@@ -85,7 +85,9 @@ namespace WinFormsApp1
             {
                 string emp_str = "Сотрудник ГУАП {0} {1}, {2} лет, пол: {3}, цвет глаз: {4}.\n=============================\n";
                 
-                Employee emp_
+                Employee emp_2 = new Employee();
+                Employee emp_3 = new Employee(emp.name, emp.surname, emp.age, emp.gender, emp.eye_color);
+                Employee emp_4 = new Employee(emp.name);
 
                 richTextBox1.AppendText(String.Format(emp_str, emp.name, emp.surname, emp.age, emp.gender, emp.eye_color));
             }
