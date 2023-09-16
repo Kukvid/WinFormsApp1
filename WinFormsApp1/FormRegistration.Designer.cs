@@ -271,8 +271,8 @@
             Controls.Add(panel1);
             MaximumSize = new Size(978, 515);
             Name = "FormRegistration";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormRegistration";
-            Load += FormRegistration_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();

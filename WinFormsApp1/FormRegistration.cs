@@ -90,6 +90,7 @@ namespace WinFormsApp1
                 Employee emp_4 = new Employee(emp.name);
 
                 richTextBox1.AppendText(String.Format(emp_str, emp.name, emp.surname, emp.age, emp.gender, emp.eye_color));
+                richTextBox1.ForeColor = Employee.BackColor;
             }
         }
 
@@ -105,9 +106,6 @@ namespace WinFormsApp1
             richTextBox1.AppendText(emp2.GetHashCode().ToString() + "\n\n");
         }
 
-        private void FormRegistration_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }
