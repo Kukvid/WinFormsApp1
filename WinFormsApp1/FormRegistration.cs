@@ -115,14 +115,14 @@ namespace WinFormsApp1
             string msg_default = "Конструктор по умолчанию:\n" +
                 "Название дисциплины: {0}\n" +
                 "Количество часов: {1}\n" +
-                "Сложность {2}\n" +
-                "Полезно ли:{3}\n************************\n";
+                "Сложность: {2}\n" +
+                "Полезно ли: {3}\n************************\n";
 
             string msg_normal = "Без конструктора:\n" +
                 "Название дисциплины: {0}\n" +
                 "Количество часов: {1}\n" +
-                "Сложность {2}\n" +
-                "Полезно ли:{3}\n************************\n";
+                "Сложность: {2}\n" +
+                "Полезно ли: {3}\n************************\n";
 
             richTextBox1.AppendText(String.Format(msg_default, discipline.Name, discipline.NumberOfHours, discipline.DifficultyLevel, discipline.IsUseful));
 
