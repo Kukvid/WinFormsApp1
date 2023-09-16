@@ -18,7 +18,7 @@ namespace WinFormsApp1
             InitializeComponent();
         }
 
-        private void button_choose_eye_color_Click(object sender, System.EventArgs e)
+        private void ButtonChooseEyeColor_Click(object sender, System.EventArgs e)
         {
             ColorDialog MyDialog = new ColorDialog();
             // Keeps the user from selecting a custom color.
@@ -30,11 +30,11 @@ namespace WinFormsApp1
 
             // Update the text box color if the user clicks OK 
             if (MyDialog.ShowDialog() == DialogResult.OK)
-                button_choose_eye_color.BackColor = MyDialog.Color;
+                ButtonChooseEyeColor.BackColor = MyDialog.Color;
 
         }
 
-        private void button_create_employee_Click(object sender, EventArgs e)
+        private void buttonCreateEmployee_Click(object sender, EventArgs e)
         {
             Employee emp = new Employee();
             string message_if_empty = "";
@@ -75,7 +75,7 @@ namespace WinFormsApp1
                 emp.gender = comboBox1.SelectedItem.ToString()[0];
             }
 
-            emp.eye_color = button_choose_eye_color.BackColor;
+            emp.eye_color = ButtonChooseEyeColor.BackColor;
 
             if (message_if_empty != "")
             {
@@ -94,16 +94,41 @@ namespace WinFormsApp1
             }
         }
 
-        private void button_clear_Click(object sender, EventArgs e)
+        private void ButtonClear_Click(object sender, EventArgs e)
         {
             richTextBox1.Text = "";
         }
 
-        private void button_get_hash_Click(object sender, EventArgs e)
+        private void ButtonMakeDisc_Click(object sender, EventArgs e)
         {
-            Employee emp2 = new Employee();
+            Discipline discipline = new Discipline();
 
-            richTextBox1.AppendText(emp2.GetHashCode().ToString() + "\n\n");
+
+            Discipline disc = new Discipline("Основы программирования", 85, 3, true);
+
+            //disc.Name = "Основы программирования";
+            //disc.NumberOfHours = 85;
+            //disc.DifficultyLevel = 3;
+            //disc.IsUseful = true;
+
+
+            string msg_default = "Конструктор по умолчанию:\n" +
+                "Название дисциплины: {0}\n" +
+                "Количество часов: {1}\n" +
+                "Сложность {2}\n" +
+                "Полезно ли:{3}\n************************\n";
+
+            string msg_normal = "Без конструктора:\n" +
+                "Название дисциплины: {0}\n" +
+                "Количество часов: {1}\n" +
+                "Сложность {2}\n" +
+                "Полезно ли:{3}\n************************\n";
+
+            richTextBox1.AppendText(String.Format(msg_default, discipline.Name, discipline.NumberOfHours, discipline.DifficultyLevel, discipline.IsUseful));
+
+
+            richTextBox1.AppendText(String.Format(msg_normal, disc.Name, disc.NumberOfHours, disc.DifficultyLevel, disc.IsUseful));
+
         }
 
 

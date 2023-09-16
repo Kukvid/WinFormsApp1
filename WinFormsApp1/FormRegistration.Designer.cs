@@ -35,17 +35,17 @@
             textBox2 = new TextBox();
             numericUpDown1 = new NumericUpDown();
             comboBox1 = new ComboBox();
-            button_choose_eye_color = new Button();
+            ButtonChooseEyeColor = new Button();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            button_create_employee = new Button();
+            buttonCreateEmployee = new Button();
             label7 = new Label();
             richTextBox1 = new RichTextBox();
-            button_clear = new Button();
-            button_get_hash = new Button();
+            ButtonClear = new Button();
+            ButtonMakeDisc = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -123,17 +123,17 @@
             comboBox1.Size = new Size(150, 39);
             comboBox1.TabIndex = 5;
             // 
-            // button_choose_eye_color
+            // ButtonChooseEyeColor
             // 
-            button_choose_eye_color.Cursor = Cursors.Hand;
-            button_choose_eye_color.ForeColor = SystemColors.ControlText;
-            button_choose_eye_color.Location = new Point(142, 312);
-            button_choose_eye_color.Margin = new Padding(0);
-            button_choose_eye_color.Name = "button_choose_eye_color";
-            button_choose_eye_color.Size = new Size(94, 32);
-            button_choose_eye_color.TabIndex = 6;
-            button_choose_eye_color.UseVisualStyleBackColor = true;
-            button_choose_eye_color.Click += button_choose_eye_color_Click;
+            ButtonChooseEyeColor.Cursor = Cursors.Hand;
+            ButtonChooseEyeColor.ForeColor = SystemColors.ControlText;
+            ButtonChooseEyeColor.Location = new Point(142, 312);
+            ButtonChooseEyeColor.Margin = new Padding(0);
+            ButtonChooseEyeColor.Name = "ButtonChooseEyeColor";
+            ButtonChooseEyeColor.Size = new Size(94, 32);
+            ButtonChooseEyeColor.TabIndex = 6;
+            ButtonChooseEyeColor.UseVisualStyleBackColor = true;
+            ButtonChooseEyeColor.Click += ButtonChooseEyeColor_Click;
             // 
             // label2
             // 
@@ -185,19 +185,19 @@
             label6.TabIndex = 11;
             label6.Text = "Цвет глаз";
             // 
-            // button_create_employee
+            // buttonCreateEmployee
             // 
-            button_create_employee.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_create_employee.AutoSize = true;
-            button_create_employee.Cursor = Cursors.Hand;
-            button_create_employee.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            button_create_employee.Location = new Point(142, 361);
-            button_create_employee.Name = "button_create_employee";
-            button_create_employee.Size = new Size(134, 42);
-            button_create_employee.TabIndex = 12;
-            button_create_employee.Text = "Создать";
-            button_create_employee.UseVisualStyleBackColor = true;
-            button_create_employee.Click += button_create_employee_Click;
+            buttonCreateEmployee.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonCreateEmployee.AutoSize = true;
+            buttonCreateEmployee.Cursor = Cursors.Hand;
+            buttonCreateEmployee.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCreateEmployee.Location = new Point(142, 361);
+            buttonCreateEmployee.Name = "buttonCreateEmployee";
+            buttonCreateEmployee.Size = new Size(134, 42);
+            buttonCreateEmployee.TabIndex = 12;
+            buttonCreateEmployee.Text = "Создать";
+            buttonCreateEmployee.UseVisualStyleBackColor = true;
+            buttonCreateEmployee.Click += buttonCreateEmployee_Click;
             // 
             // label7
             // 
@@ -214,37 +214,37 @@
             // 
             richTextBox1.Location = new Point(555, 163);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(318, 182);
+            richTextBox1.Size = new Size(389, 182);
             richTextBox1.TabIndex = 15;
             richTextBox1.Text = "";
             // 
-            // button_clear
+            // ButtonClear
             // 
-            button_clear.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_clear.AutoSize = true;
-            button_clear.Cursor = Cursors.Hand;
-            button_clear.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            button_clear.Location = new Point(555, 361);
-            button_clear.Name = "button_clear";
-            button_clear.Size = new Size(148, 42);
-            button_clear.TabIndex = 16;
-            button_clear.Text = "Очистить";
-            button_clear.UseVisualStyleBackColor = true;
-            button_clear.Click += button_clear_Click;
+            ButtonClear.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ButtonClear.AutoSize = true;
+            ButtonClear.Cursor = Cursors.Hand;
+            ButtonClear.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            ButtonClear.Location = new Point(555, 361);
+            ButtonClear.Name = "ButtonClear";
+            ButtonClear.Size = new Size(148, 42);
+            ButtonClear.TabIndex = 16;
+            ButtonClear.Text = "Очистить";
+            ButtonClear.UseVisualStyleBackColor = true;
+            ButtonClear.Click += ButtonClear_Click;
             // 
-            // button_get_hash
+            // ButtonMakeDisc
             // 
-            button_get_hash.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_get_hash.AutoSize = true;
-            button_get_hash.Cursor = Cursors.Hand;
-            button_get_hash.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button_get_hash.Location = new Point(715, 361);
-            button_get_hash.Name = "button_get_hash";
-            button_get_hash.Size = new Size(158, 42);
-            button_get_hash.TabIndex = 17;
-            button_get_hash.Text = "Получить Хэш";
-            button_get_hash.UseVisualStyleBackColor = true;
-            button_get_hash.Click += button_get_hash_Click;
+            ButtonMakeDisc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ButtonMakeDisc.AutoSize = true;
+            ButtonMakeDisc.Cursor = Cursors.Hand;
+            ButtonMakeDisc.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ButtonMakeDisc.Location = new Point(715, 361);
+            ButtonMakeDisc.Name = "ButtonMakeDisc";
+            ButtonMakeDisc.Size = new Size(229, 42);
+            ButtonMakeDisc.TabIndex = 17;
+            ButtonMakeDisc.Text = "Добавить дисциплину";
+            ButtonMakeDisc.UseVisualStyleBackColor = true;
+            ButtonMakeDisc.Click += ButtonMakeDisc_Click;
             // 
             // FormRegistration
             // 
@@ -252,17 +252,17 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(960, 468);
-            Controls.Add(button_get_hash);
-            Controls.Add(button_clear);
+            Controls.Add(ButtonMakeDisc);
+            Controls.Add(ButtonClear);
             Controls.Add(richTextBox1);
             Controls.Add(label7);
-            Controls.Add(button_create_employee);
+            Controls.Add(buttonCreateEmployee);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(button_choose_eye_color);
+            Controls.Add(ButtonChooseEyeColor);
             Controls.Add(comboBox1);
             Controls.Add(numericUpDown1);
             Controls.Add(textBox2);
@@ -270,6 +270,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             MaximumSize = new Size(978, 515);
+            MinimumSize = new Size(978, 515);
             Name = "FormRegistration";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormRegistration";
@@ -289,16 +290,16 @@
         private TextBox textBox2;
         private NumericUpDown numericUpDown1;
         private ComboBox comboBox1;
-        private Button button_choose_eye_color;
+        private Button ButtonChooseEyeColor;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
         private Label label6;
-        private Button button_create_employee;
+        private Button buttonCreateEmployee;
         private Label label7;
         private RichTextBox richTextBox1;
-        private Button button_clear;
-        private Button button_get_hash;
+        private Button ButtonClear;
+        private Button ButtonMakeDisc;
     }
 }
