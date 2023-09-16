@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistration));
             panel1 = new Panel();
             label1 = new Label();
             pictureBox1 = new PictureBox();
@@ -76,7 +75,7 @@
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.None;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Image = Properties.Resources.guap;
             pictureBox1.Location = new Point(788, 409);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(160, 55);
