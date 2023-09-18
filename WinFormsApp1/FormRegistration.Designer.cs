@@ -32,20 +32,16 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
-            textBox2 = new TextBox();
             numericUpDown1 = new NumericUpDown();
-            comboBox1 = new ComboBox();
             ButtonChooseEyeColor = new Button();
-            label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            label5 = new Label();
             label6 = new Label();
-            buttonCreateEmployee = new Button();
+            buttonCreateStarSystem = new Button();
             label7 = new Label();
             richTextBox1 = new RichTextBox();
             ButtonClear = new Button();
-            ButtonMakeDisc = new Button();
+            ButtonMakePlanet = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -64,12 +60,12 @@
             // label1
             // 
             label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
             label1.Size = new Size(960, 103);
             label1.TabIndex = 0;
-            label1.Text = "Регистрация";
+            label1.Text = "Регистрация космических тел";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
@@ -87,47 +83,27 @@
             // 
             textBox1.Cursor = Cursors.IBeam;
             textBox1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox1.Location = new Point(142, 118);
+            textBox1.Location = new Point(252, 118);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(230, 39);
-            textBox1.TabIndex = 2;
-            // 
-            // textBox2
-            // 
-            textBox2.Cursor = Cursors.IBeam;
-            textBox2.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox2.Location = new Point(142, 163);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(230, 39);
-            textBox2.TabIndex = 3;
+            textBox1.TabIndex = 3;
             // 
             // numericUpDown1
             // 
             numericUpDown1.Cursor = Cursors.Hand;
             numericUpDown1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            numericUpDown1.Location = new Point(142, 212);
-            numericUpDown1.Maximum = new decimal(new int[] { 200, 0, 0, 0 });
+            numericUpDown1.Location = new Point(252, 167);
+            numericUpDown1.Maximum = new decimal(new int[] { 1316134911, 2328, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(150, 39);
+            numericUpDown1.Size = new Size(230, 39);
             numericUpDown1.TabIndex = 4;
-            // 
-            // comboBox1
-            // 
-            comboBox1.Cursor = Cursors.Hand;
-            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox1.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "м", "ж" });
-            comboBox1.Location = new Point(142, 257);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(150, 39);
-            comboBox1.TabIndex = 5;
+            numericUpDown1.ThousandsSeparator = true;
             // 
             // ButtonChooseEyeColor
             // 
             ButtonChooseEyeColor.Cursor = Cursors.Hand;
             ButtonChooseEyeColor.ForeColor = SystemColors.ControlText;
-            ButtonChooseEyeColor.Location = new Point(142, 312);
+            ButtonChooseEyeColor.Location = new Point(252, 217);
             ButtonChooseEyeColor.Margin = new Padding(0);
             ButtonChooseEyeColor.Name = "ButtonChooseEyeColor";
             ButtonChooseEyeColor.Size = new Size(94, 32);
@@ -135,69 +111,49 @@
             ButtonChooseEyeColor.UseVisualStyleBackColor = true;
             ButtonChooseEyeColor.Click += ButtonChooseEyeColor_Click;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(12, 118);
-            label2.Name = "label2";
-            label2.Size = new Size(124, 33);
-            label2.TabIndex = 7;
-            label2.Text = "Фамилия";
-            // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(12, 163);
+            label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(12, 118);
             label3.Name = "label3";
-            label3.Size = new Size(65, 33);
+            label3.Size = new Size(234, 26);
             label3.TabIndex = 8;
-            label3.Text = "Имя";
+            label3.Text = "Имя звездной системы";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(12, 212);
+            label4.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(12, 167);
             label4.Name = "label4";
-            label4.Size = new Size(109, 33);
+            label4.Size = new Size(161, 26);
             label4.TabIndex = 9;
-            label4.Text = "Возраст";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(12, 257);
-            label5.Name = "label5";
-            label5.Size = new Size(62, 33);
-            label5.TabIndex = 10;
-            label5.Text = "Пол";
+            label4.Text = "Возраст звезды";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(12, 312);
+            label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(12, 217);
             label6.Name = "label6";
-            label6.Size = new Size(125, 33);
+            label6.Size = new Size(130, 26);
             label6.TabIndex = 11;
-            label6.Text = "Цвет глаз";
+            label6.Text = "Цвет звезды";
             // 
-            // buttonCreateEmployee
+            // buttonCreateStarSystem
             // 
-            buttonCreateEmployee.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            buttonCreateEmployee.AutoSize = true;
-            buttonCreateEmployee.Cursor = Cursors.Hand;
-            buttonCreateEmployee.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            buttonCreateEmployee.Location = new Point(142, 361);
-            buttonCreateEmployee.Name = "buttonCreateEmployee";
-            buttonCreateEmployee.Size = new Size(134, 42);
-            buttonCreateEmployee.TabIndex = 12;
-            buttonCreateEmployee.Text = "Создать";
-            buttonCreateEmployee.UseVisualStyleBackColor = true;
-            buttonCreateEmployee.Click += buttonCreateEmployee_Click;
+            buttonCreateStarSystem.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            buttonCreateStarSystem.AutoSize = true;
+            buttonCreateStarSystem.Cursor = Cursors.Hand;
+            buttonCreateStarSystem.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonCreateStarSystem.Location = new Point(252, 262);
+            buttonCreateStarSystem.Name = "buttonCreateStarSystem";
+            buttonCreateStarSystem.Size = new Size(134, 42);
+            buttonCreateStarSystem.TabIndex = 12;
+            buttonCreateStarSystem.Text = "Создать";
+            buttonCreateStarSystem.UseVisualStyleBackColor = true;
+            buttonCreateStarSystem.Click += buttonCreateStarSystem_Click;
             // 
             // label7
             // 
@@ -206,9 +162,9 @@
             label7.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(555, 118);
             label7.Name = "label7";
-            label7.Size = new Size(318, 33);
+            label7.Size = new Size(370, 33);
             label7.TabIndex = 14;
-            label7.Text = "Созданные пользователи:";
+            label7.Text = "Созданные космические тела:";
             // 
             // richTextBox1
             // 
@@ -232,19 +188,19 @@
             ButtonClear.UseVisualStyleBackColor = true;
             ButtonClear.Click += ButtonClear_Click;
             // 
-            // ButtonMakeDisc
+            // ButtonMakePlanet
             // 
-            ButtonMakeDisc.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            ButtonMakeDisc.AutoSize = true;
-            ButtonMakeDisc.Cursor = Cursors.Hand;
-            ButtonMakeDisc.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            ButtonMakeDisc.Location = new Point(715, 361);
-            ButtonMakeDisc.Name = "ButtonMakeDisc";
-            ButtonMakeDisc.Size = new Size(229, 42);
-            ButtonMakeDisc.TabIndex = 17;
-            ButtonMakeDisc.Text = "Добавить дисциплину";
-            ButtonMakeDisc.UseVisualStyleBackColor = true;
-            ButtonMakeDisc.Click += ButtonMakeDisc_Click;
+            ButtonMakePlanet.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            ButtonMakePlanet.AutoSize = true;
+            ButtonMakePlanet.Cursor = Cursors.Hand;
+            ButtonMakePlanet.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ButtonMakePlanet.Location = new Point(715, 361);
+            ButtonMakePlanet.Name = "ButtonMakePlanet";
+            ButtonMakePlanet.Size = new Size(229, 42);
+            ButtonMakePlanet.TabIndex = 17;
+            ButtonMakePlanet.Text = "Добавить планету";
+            ButtonMakePlanet.UseVisualStyleBackColor = true;
+            ButtonMakePlanet.Click += ButtonMakePlanet_Click;
             // 
             // FormRegistration
             // 
@@ -252,20 +208,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PeachPuff;
             ClientSize = new Size(960, 468);
-            Controls.Add(ButtonMakeDisc);
+            Controls.Add(ButtonMakePlanet);
             Controls.Add(ButtonClear);
             Controls.Add(richTextBox1);
             Controls.Add(label7);
-            Controls.Add(buttonCreateEmployee);
+            Controls.Add(buttonCreateStarSystem);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(ButtonChooseEyeColor);
-            Controls.Add(comboBox1);
             Controls.Add(numericUpDown1);
-            Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
@@ -287,19 +239,15 @@
         private Label label1;
         private PictureBox pictureBox1;
         private TextBox textBox1;
-        private TextBox textBox2;
         private NumericUpDown numericUpDown1;
-        private ComboBox comboBox1;
         private Button ButtonChooseEyeColor;
-        private Label label2;
         private Label label3;
         private Label label4;
-        private Label label5;
         private Label label6;
-        private Button buttonCreateEmployee;
+        private Button buttonCreateStarSystem;
         private Label label7;
         private RichTextBox richTextBox1;
         private Button ButtonClear;
-        private Button ButtonMakeDisc;
+        private Button ButtonMakePlanet;
     }
 }

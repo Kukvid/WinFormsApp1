@@ -26,7 +26,7 @@ namespace WinFormsApp1
             // Allows the user to get help. (The default is false.)
             MyDialog.ShowHelp = true;
             // Sets the initial color select to the current text color.
-            MyDialog.Color = textBox1.ForeColor;
+            MyDialog.Color = ButtonChooseEyeColor.ForeColor;
 
             // Update the text box color if the user clicks OK 
             if (MyDialog.ShowDialog() == DialogResult.OK)
@@ -34,48 +34,30 @@ namespace WinFormsApp1
 
         }
 
-        private void buttonCreateEmployee_Click(object sender, EventArgs e)
+        private void buttonCreateStarSystem_Click(object sender, EventArgs e)
         {
-            Employee emp = new Employee();
+            StarSystem starSystem = new StarSystem();
             string message_if_empty = "";
+
             if (string.IsNullOrEmpty(textBox1.Text))
             {
-                message_if_empty += "Обязательно заполните имя";
+                message_if_empty += "Обязательно заполните название звездной системы";
             }
             else
             {
-                emp.name = textBox1.Text;
+                starSystem.name = textBox1.Text;
             }
 
-            if (string.IsNullOrEmpty(textBox2.Text))
+            if ((long)numericUpDown1.Value == 0)
             {
-                message_if_empty += "\nОбязательно заполните фамилию";
+                message_if_empty += "\nОбязательно выберите возраст звездной системы";
             }
             else
             {
-                emp.surname = textBox2.Text;
+                starSystem.age = (long)numericUpDown1.Value;
             }
 
-            if ((int)numericUpDown1.Value == 0)
-            {
-                message_if_empty += "\nОбязательно выберите свой возраст";
-            }
-            else
-            {
-                emp.age = (int)numericUpDown1.Value;
-            }
-
-            if (comboBox1.SelectedIndex == -1)
-            {
-                message_if_empty += "\nОбязательно выберите пол";
-            }
-            else
-            {
-                //MessageBox.Show(comboBox1.SelectedItem.ToString());
-                emp.gender = comboBox1.SelectedItem.ToString()[0];
-            }
-
-            emp.eye_color = ButtonChooseEyeColor.BackColor;
+            starSystem.starColor = ButtonChooseEyeColor.BackColor;
 
             if (message_if_empty != "")
             {
@@ -83,14 +65,16 @@ namespace WinFormsApp1
             }
             else
             {
-                string emp_str = "Сотрудник ГУАП {0} {1}, {2} лет, пол: {3}, цвет глаз: {4}.\n=============================\n";
+                string starSystem_str = "Звездная система: {0},\n" +
+                    "Возраст главной звезды: {1},\n" +
+                    "Цвет звезды: {2}.\n=============================\n";
 
-                Employee emp_2 = new Employee();
-                Employee emp_3 = new Employee(emp.name, emp.surname, emp.age, emp.gender, emp.eye_color);
-                Employee emp_4 = new Employee(emp.name);
+                StarSystem starSystem_2 = new StarSystem();
+                StarSystem starSystem_3 = new StarSystem(starSystem.name, starSystem.age, starSystem.starColor);
+                StarSystem starSystem_4 = new StarSystem(starSystem.name);
 
-                richTextBox1.AppendText(String.Format(emp_str, emp.name, emp.surname, emp.age, emp.gender, emp.eye_color));
-                richTextBox1.ForeColor = Employee.BackColor;
+                richTextBox1.AppendText(String.Format(starSystem_str, starSystem.name, starSystem.age, starSystem.starColor));
+                richTextBox1.ForeColor = StarSystem.additionalColor;
             }
         }
 
@@ -99,37 +83,39 @@ namespace WinFormsApp1
             richTextBox1.Text = "";
         }
 
-        private void ButtonMakeDisc_Click(object sender, EventArgs e)
+        private void ButtonMakePlanet_Click(object sender, EventArgs e)
         {
-            Discipline discipline = new Discipline();
+            Planet empty = new Planet();
 
 
-            Discipline disc = new Discipline("Основы программирования", 85, 3, true);
+            Planet Earth = new Planet("Земля", 6, 3, 9.78);
 
-            //disc.Name = "Основы программирования";
-            //disc.NumberOfHours = 85;
-            //disc.DifficultyLevel = 3;
-            //disc.IsUseful = true;
+            //Planet Earth;
+            //Earth.name = "Основы программирования";
+            //Earth.mass = 85;
+            //Earth.volume = 3;
+            //Earth.accelerationOfFreeFall = 9.78;
 
 
             string msg_default = "Конструктор по умолчанию:\n" +
-                "Название дисциплины: {0}\n" +
-                "Количество часов: {1}\n" +
-                "Сложность: {2}\n" +
-                "Полезно ли: {3}\n************************\n";
+                "Название планеты: {0}\n" +
+                "Масса планеты: {1} (10^24 кг)\n" +
+                "Объем планеты: {2} (10^10 км^3)\n" +
+                "Ускорение свободного падения: {3} (м/с^2)\n************************\n";
 
-            string msg_normal = "Без конструктора:\n" +
-                "Название дисциплины: {0}\n" +
-                "Количество часов: {1}\n" +
-                "Сложность: {2}\n" +
-                "Полезно ли: {3}\n************************\n";
+            string msg_Earth = "Перегруженный конструктор:\n" +
+                "Название планеты: {0}\n" +
+                "Масса планеты: {1} (10^24 кг)\n" +
+                "Объем планеты: {2} (10^10 км^3)\n" +
+                "Ускорение свободного падения: {3} (м/с^2)\n************************\n";
 
-            richTextBox1.AppendText(String.Format(msg_default, discipline.Name, discipline.NumberOfHours, discipline.DifficultyLevel, discipline.IsUseful));
+            richTextBox1.AppendText(String.Format(msg_default, empty.name, empty.mass, empty.volume, empty.accelerationOfFreeFall));
 
 
-            richTextBox1.AppendText(String.Format(msg_normal, disc.Name, disc.NumberOfHours, disc.DifficultyLevel, disc.IsUseful));
+            richTextBox1.AppendText(String.Format(msg_Earth, Earth.name, Earth.mass, Earth.volume, Earth.accelerationOfFreeFall));
 
         }
+
 
 
     }
