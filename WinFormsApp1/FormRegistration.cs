@@ -16,6 +16,8 @@ namespace WinFormsApp1
         public FormRegistration()
         {
             InitializeComponent();
+            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dateTimePicker1.Text = DateTime.Now.ToString();
         }
 
         private void ButtonChooseEyeColor_Click(object sender, System.EventArgs e)
@@ -45,7 +47,7 @@ namespace WinFormsApp1
             }
             else
             {
-                starSystem.name = textBox1.Text;
+                starSystem.Name = textBox1.Text;
             }
 
             if ((long)numericUpDown1.Value == 0)
@@ -54,10 +56,16 @@ namespace WinFormsApp1
             }
             else
             {
-                starSystem.age = (long)numericUpDown1.Value;
+                starSystem.setAge((long)numericUpDown1.Value);
             }
 
             starSystem.starColor = ButtonChooseEyeColor.BackColor;
+            starSystem.CountStars = (int)numericUpDown2.Value;
+            starSystem.DateOfDiscovery = DateTime.Parse(dateTimePicker1.Value.ToString());
+            if (starSystem.getCountStars() == 0)
+            {
+                message_if_empty += "\nОбязательно введите количество звезд (больше 0)";
+            }
 
             if (message_if_empty != "")
             {
@@ -66,15 +74,18 @@ namespace WinFormsApp1
             else
             {
                 string starSystem_str = "Звездная система: {0},\n" +
-                    "Возраст главной звезды: {1},\n" +
-                    "Цвет звезды: {2}.\n=============================\n";
+                    "Возраст главной звезды: {1} лет,\n" +
+                    "Количество звезд в звездной системе: {2}\n" +
+                    "Дата открытия системы: {3}\n" +
+                    "Цвет звезды: {4}.\n=============================\n";
 
                 StarSystem starSystem_2 = new StarSystem();
-                StarSystem starSystem_3 = new StarSystem(starSystem.name, starSystem.age, starSystem.starColor);
-                StarSystem starSystem_4 = new StarSystem(starSystem.name);
+                StarSystem starSystem_3 = new StarSystem(starSystem.Name, starSystem.getCountStars(), starSystem.Age, starSystem.DateOfDiscovery, starSystem.starColor);
+                StarSystem starSystem_4 = new StarSystem(starSystem.Name);
 
-                richTextBox1.AppendText(String.Format(starSystem_str, starSystem.name, starSystem.age, starSystem.starColor));
-                richTextBox1.ForeColor = StarSystem.additionalColor;
+                richTextBox1.AppendText(String.Format(starSystem_str, starSystem.Name, starSystem.Age, starSystem.getCountStars(), starSystem.DateOfDiscovery, starSystem.starColor));
+                richTextBox1.ForeColor = StarSystem.AdditionalColor;
+                //this.BackColor = StarSystem.additionalColor;
             }
         }
 
@@ -88,7 +99,7 @@ namespace WinFormsApp1
             Planet empty = new Planet();
 
 
-            Planet Earth = new Planet("Земля", 6, 3, 9.78);
+            Planet Earth = new Planet("Солнце", 5.9736, 108.321, 9.78);
 
             //Planet Earth;
             //Earth.name = "Основы программирования";
@@ -109,14 +120,12 @@ namespace WinFormsApp1
                 "Объем планеты: {2} (10^10 км^3)\n" +
                 "Ускорение свободного падения: {3} (м/с^2)\n************************\n";
 
-            richTextBox1.AppendText(String.Format(msg_default, empty.name, empty.mass, empty.volume, empty.accelerationOfFreeFall));
+            richTextBox1.AppendText(String.Format(msg_default, empty.Name, empty.mass, empty.volume, empty.accelerationOfFreeFall));
 
 
-            richTextBox1.AppendText(String.Format(msg_Earth, Earth.name, Earth.mass, Earth.volume, Earth.accelerationOfFreeFall));
+            richTextBox1.AppendText(String.Format(msg_Earth, Earth.Name, Earth.mass, Earth.volume, Earth.accelerationOfFreeFall));
 
         }
-
-
 
     }
 }
