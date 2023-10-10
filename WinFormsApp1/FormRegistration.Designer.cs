@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            buttonChangeTheme = new Button();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             textBox1 = new TextBox();
@@ -49,14 +50,20 @@
             listBox1 = new ListBox();
             textBox2 = new TextBox();
             groupBox1 = new GroupBox();
-            button2 = new Button();
+            label8 = new Label();
+            label9 = new Label();
+            addPhoto = new Button();
+            label10 = new Label();
             pictureBox2 = new PictureBox();
+            label11 = new Label();
+            label12 = new Label();
             numericUpDown3 = new NumericUpDown();
             numericUpDown4 = new NumericUpDown();
             dateTimePicker2 = new DateTimePicker();
             button1 = new Button();
             openFileDialog1 = new OpenFileDialog();
             pictureBox3 = new PictureBox();
+            saveFileDialog1 = new SaveFileDialog();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -71,12 +78,23 @@
             // panel1
             // 
             panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(buttonChangeTheme);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1241, 103);
             panel1.TabIndex = 0;
+            // 
+            // buttonChangeTheme
+            // 
+            buttonChangeTheme.Location = new Point(12, 12);
+            buttonChangeTheme.Name = "buttonChangeTheme";
+            buttonChangeTheme.Size = new Size(115, 29);
+            buttonChangeTheme.TabIndex = 32;
+            buttonChangeTheme.Text = "сменить фон";
+            buttonChangeTheme.UseVisualStyleBackColor = true;
+            buttonChangeTheme.Click += buttonChangeTheme_Click;
             // 
             // label1
             // 
@@ -88,12 +106,13 @@
             label1.TabIndex = 0;
             label1.Text = "Регистрация космических тел";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = Properties.Resources.guap;
-            pictureBox1.Location = new Point(18, 593);
+            pictureBox1.Location = new Point(18, 745);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(160, 55);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -137,7 +156,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(6, 34);
+            label3.Location = new Point(18, 408);
             label3.Name = "label3";
             label3.Size = new Size(234, 26);
             label3.TabIndex = 8;
@@ -147,7 +166,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(6, 75);
+            label4.Location = new Point(18, 449);
             label4.Name = "label4";
             label4.Size = new Size(243, 26);
             label4.TabIndex = 9;
@@ -157,7 +176,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(6, 211);
+            label6.Location = new Point(18, 585);
             label6.Name = "label6";
             label6.Size = new Size(130, 26);
             label6.TabIndex = 11;
@@ -179,6 +198,7 @@
             // 
             label7.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             label7.AutoSize = true;
+            label7.BackColor = Color.PeachPuff;
             label7.Font = new Font("Times New Roman", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(545, 23);
             label7.Name = "label7";
@@ -224,7 +244,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(6, 119);
+            label2.Location = new Point(18, 493);
             label2.Name = "label2";
             label2.Size = new Size(184, 26);
             label2.TabIndex = 18;
@@ -241,7 +261,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.CustomFormat = "dd.MM.yyyy hh:mm";
+            dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
             dateTimePicker1.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.Location = new Point(272, 158);
@@ -254,7 +274,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(6, 166);
+            label5.Location = new Point(18, 540);
             label5.Name = "label5";
             label5.Size = new Size(244, 26);
             label5.TabIndex = 21;
@@ -266,9 +286,8 @@
             listBox1.ItemHeight = 20;
             listBox1.Location = new Point(555, 411);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(372, 224);
+            listBox1.Size = new Size(372, 244);
             listBox1.TabIndex = 22;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // textBox2
             // 
@@ -281,22 +300,23 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(button2);
+            groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(addPhoto);
+            groupBox1.Controls.Add(label10);
             groupBox1.Controls.Add(pictureBox2);
+            groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(textBox1);
+            groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(numericUpDown1);
             groupBox1.Controls.Add(ButtonChooseEyeColor);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(buttonCreateStarSystem);
-            groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(dateTimePicker1);
             groupBox1.Controls.Add(richTextBox1);
             groupBox1.Controls.Add(numericUpDown2);
             groupBox1.Controls.Add(ButtonClear);
-            groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(ButtonMakePlanet);
             groupBox1.Location = new Point(12, 109);
             groupBox1.Name = "groupBox1";
@@ -305,15 +325,48 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Создание объектов";
             // 
-            // button2
+            // label8
             // 
-            button2.Location = new Point(993, 256);
-            button2.Name = "button2";
-            button2.Size = new Size(139, 29);
-            button2.TabIndex = 23;
-            button2.Text = "добавить фото";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            label8.AutoSize = true;
+            label8.BackColor = Color.PeachPuff;
+            label8.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Location = new Point(6, 26);
+            label8.Name = "label8";
+            label8.Size = new Size(234, 26);
+            label8.TabIndex = 32;
+            label8.Text = "Имя звездной системы";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.PeachPuff;
+            label9.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(6, 67);
+            label9.Name = "label9";
+            label9.Size = new Size(243, 26);
+            label9.TabIndex = 33;
+            label9.Text = "Возраст главной звезды";
+            // 
+            // addPhoto
+            // 
+            addPhoto.Location = new Point(993, 256);
+            addPhoto.Name = "addPhoto";
+            addPhoto.Size = new Size(139, 29);
+            addPhoto.TabIndex = 23;
+            addPhoto.Text = "добавить фото";
+            addPhoto.UseVisualStyleBackColor = true;
+            addPhoto.Click += addPhoto_Click;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.PeachPuff;
+            label10.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label10.Location = new Point(6, 203);
+            label10.Name = "label10";
+            label10.Size = new Size(130, 26);
+            label10.TabIndex = 34;
+            label10.Text = "Цвет звезды";
             // 
             // pictureBox2
             // 
@@ -323,6 +376,28 @@
             pictureBox2.Size = new Size(241, 224);
             pictureBox2.TabIndex = 22;
             pictureBox2.TabStop = false;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.PeachPuff;
+            label11.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Location = new Point(6, 158);
+            label11.Name = "label11";
+            label11.Size = new Size(244, 26);
+            label11.TabIndex = 36;
+            label11.Text = "Дата открытия системы";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.PeachPuff;
+            label12.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label12.Location = new Point(6, 111);
+            label12.Name = "label12";
+            label12.Size = new Size(184, 26);
+            label12.TabIndex = 35;
+            label12.Text = "Количество звезд";
             // 
             // numericUpDown3
             // 
@@ -344,7 +419,7 @@
             // 
             // dateTimePicker2
             // 
-            dateTimePicker2.CustomFormat = "dd.MM.yyyy hh:mm";
+            dateTimePicker2.CustomFormat = "dd.MM.yyyy HH:mm";
             dateTimePicker2.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
             dateTimePicker2.Location = new Point(283, 531);
@@ -356,7 +431,7 @@
             // 
             button1.Cursor = Cursors.Hand;
             button1.ForeColor = SystemColors.ControlText;
-            button1.Location = new Point(283, 576);
+            button1.Location = new Point(284, 585);
             button1.Margin = new Padding(0);
             button1.Name = "button1";
             button1.Size = new Size(94, 32);
@@ -372,7 +447,7 @@
             pictureBox3.BorderStyle = BorderStyle.Fixed3D;
             pictureBox3.Location = new Point(951, 411);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(241, 224);
+            pictureBox3.Size = new Size(261, 244);
             pictureBox3.TabIndex = 24;
             pictureBox3.TabStop = false;
             // 
@@ -382,22 +457,29 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.PeachPuff;
-            ClientSize = new Size(1241, 660);
+            ClientSize = new Size(1241, 812);
             Controls.Add(pictureBox3);
             Controls.Add(button1);
             Controls.Add(dateTimePicker2);
             Controls.Add(numericUpDown4);
             Controls.Add(numericUpDown3);
+            Controls.Add(label3);
+            Controls.Add(label4);
             Controls.Add(groupBox1);
+            Controls.Add(label6);
             Controls.Add(textBox2);
             Controls.Add(listBox1);
+            Controls.Add(label5);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
+            Controls.Add(label2);
             MaximumSize = new Size(1920, 1080);
             MinimumSize = new Size(978, 515);
             Name = "FormRegistration";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormRegistration";
+            FormClosed += FormRegistration_FormClosed;
+            Load += FormRegistration_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
@@ -440,8 +522,15 @@
         private DateTimePicker dateTimePicker2;
         private Button button1;
         private PictureBox pictureBox2;
-        private Button button2;
+        private Button addPhoto;
         private OpenFileDialog openFileDialog1;
         private PictureBox pictureBox3;
+        private Button buttonChangeTheme;
+        private SaveFileDialog saveFileDialog1;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private Label label12;
     }
 }
