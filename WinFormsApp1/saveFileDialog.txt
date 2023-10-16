@@ -17,3 +17,10 @@ C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Laland 21185.jpg
 C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\themeCats.jpg
 C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\themeCats.jpg
 C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\themeCats.jpg
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\themeCats.jpg
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Saturn.jpg
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Cepheus.jpg
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Rho Ophiuchi.png
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Venus.jpg
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\DyingStar WR-124.png
+C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\default-star-system.jpg
