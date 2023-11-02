@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection.Emit;
 using System.Diagnostics.Eventing.Reader;
+using System.Drawing.Design;
 
 namespace WinFormsApp1
 {
@@ -24,10 +25,10 @@ namespace WinFormsApp1
         List<Planet> new_planets = new List<Planet>() { };
         List<Moon> new_moons = new List<Moon>() { };
 
-        BindingList<SpaceObject> objects = new BindingList<SpaceObject>();
+        BindingList<SpaceObject> objects = new BindingList<SpaceObject>(); // UpCasting()
         Star star_for_methods = new Star();
 
-        SpaceObject check_parent = new SpaceObject();
+        //SpaceObject check_parent = new SpaceObject();
         Star check_star = new Star();
         Moon check_moon = new Moon();
         Planet check_planet = new Planet();
@@ -39,23 +40,8 @@ namespace WinFormsApp1
             pictureBox2.Image = Properties.Resources.default_star_system;
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            //pictureBox3.Image = Properties.Resources.default_star_system;
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            // У родителя нет доступа к методу потомков
-            //check_parent.writeToFile(); 
-
-            MessageBox.Show(check_parent.ToString() + "\n"
-                + check_planet.ToString() + "\n" + check_moon.ToString() + "\n" + check_star.ToString());
-
-            SpaceObject check_star_UpCasting = (SpaceObject)check_star;
-            //check_star_UpCasting.writeToFile();
-
-            SpaceObject spaceObjectFromStar = new Star();
-            Star check_star_DownCasting = (Star)spaceObjectFromStar;
-            //check_star_DownCasting.writeToFile();
-
-            MessageBox.Show(check_star_UpCasting.ToString() + "\n" + check_star_DownCasting.ToString());
 
             foreach (Star star in stars)
             {
@@ -99,7 +85,7 @@ namespace WinFormsApp1
                 return;
             }
 
-            SpaceObject temp = new SpaceObject();
+            //SpaceObject temp = new SpaceObject();
 
             if (string.IsNullOrEmpty(textBox1.Text))
             {
@@ -107,7 +93,7 @@ namespace WinFormsApp1
             }
             else
             {
-                temp.Name = textBox1.Text;
+                //temp.Name = textBox1.Text;
             }
 
             if ((long)numericUpDown1.Value == 0)
@@ -116,12 +102,12 @@ namespace WinFormsApp1
             }
             else
             {
-                temp.setAge((long)numericUpDown1.Value);
+                //temp.setAge((long)numericUpDown1.Value);
             }
 
-            temp.SpaceObjectColor = ButtonChooseEyeColor.BackColor;
+            //temp.SpaceObjectColor = ButtonChooseEyeColor.BackColor;
             //starSystem.CountStars = (int)numericUpDown2.Value;
-            temp.DateOfDiscovery = DateTime.Parse(dateTimePicker1.Value.ToString());
+            DateTime dateOfDiscovery = DateTime.Parse(dateTimePicker1.Value.ToString());
             /*if (starSystem.getCountStars() == 0)
             {
                 message_if_empty += "\nОбязательно введите количество звезд (больше 0)";
@@ -137,7 +123,7 @@ namespace WinFormsApp1
 
             if (comboBox1.Text == "Планета")
             {
-                if ((double)numericUpDownWeight.Value < 1)
+                if ((double)numericUpDownWeight.Value <= 0)
                 {
                     message_if_empty += "\nДобавьте массу для планеты";
                 }
@@ -148,7 +134,7 @@ namespace WinFormsApp1
             }
             else if (comboBox1.Text == "Луна")
             {
-                if ((double)numericUpDownWeight.Value < 1)
+                if ((double)numericUpDownWeight.Value <= 0)
                 {
                     message_if_empty += "\nДобавьте массу для луны";
                 }
@@ -179,22 +165,26 @@ namespace WinFormsApp1
                     "Цвет планеты: {3}.\n" +
                     "Вес планеты: {4} кг." +
                     "\n=============================\n";
+                //string photo_now = (string)pictureBox2.Tag;
                 if (pictureBox2.Tag != null)
                 {
-                    temp.Photo = (string)pictureBox2.Tag;
+                    //temp.Photo = (string)pictureBox2.Tag;
+
                 }
                 if (comboBox1.Text == "Звезда")
                 {
 
-                    Star newObject = new Star(temp.Name, temp.Age, temp.DateOfDiscovery, temp.SpaceObjectColor, temp.Photo);
-                    richTextBox1.AppendText(String.Format(star_str, newObject.Name, newObject.Age, newObject.DateOfDiscovery, newObject.SpaceObjectColor));
+                    Star newObject = new Star(textBox1.Text, (long)numericUpDown1.Value, dateOfDiscovery, ButtonChooseEyeColor.BackColor, (string)pictureBox2.Tag);
+
+                    richTextBox1.AppendText(String.Format(star_str, newObject.Name, newObject.Age, dateOfDiscovery, newObject.SpaceObjectColor));
                     objects.Add(newObject);
                     new_stars.Add(newObject);
                 }
                 else if (comboBox1.Text == "Планета")
                 {
-                    Planet newObject = new Planet(temp.Name, temp.Age, (double)numericUpDownWeight.Value, (double)numericUpDownAccelerationOfFreeFall.Value, temp.DateOfDiscovery, temp.SpaceObjectColor, temp.Photo);
-                    richTextBox1.AppendText(String.Format(planet_str, newObject.Name, newObject.Age, newObject.DateOfDiscovery, newObject.SpaceObjectColor, newObject.Weight, newObject.AccelerationOfFreeFall));
+                    Planet newObject = new Planet(textBox1.Text, (long)numericUpDown1.Value, (double)numericUpDownWeight.Value, (double)numericUpDownAccelerationOfFreeFall.Value, dateOfDiscovery, ButtonChooseEyeColor.BackColor, (string)pictureBox2.Tag);
+                    newObject.DateOfDiscovery = dateOfDiscovery;
+                    richTextBox1.AppendText(String.Format(planet_str, newObject.Name, newObject.Age, dateOfDiscovery, newObject.SpaceObjectColor, newObject.Weight, newObject.AccelerationOfFreeFall));
 
                     objects.Add(newObject);
                     new_planets.Add(newObject);
@@ -202,8 +192,8 @@ namespace WinFormsApp1
                 else if (comboBox1.Text == "Луна")
                 {
 
-                    Moon newObject = new Moon(temp.Name, temp.Age, (double)numericUpDownWeight.Value, temp.DateOfDiscovery, temp.SpaceObjectColor, temp.Photo);
-                    richTextBox1.AppendText(String.Format(moon_str, newObject.Name, newObject.Age, newObject.DateOfDiscovery, newObject.SpaceObjectColor, newObject.Weight));
+                    Moon newObject = new Moon(textBox1.Text, (long)numericUpDown1.Value, (double)numericUpDownWeight.Value, dateOfDiscovery, ButtonChooseEyeColor.BackColor, (string)pictureBox2.Tag);
+                    richTextBox1.AppendText(String.Format(moon_str, newObject.Name, newObject.Age, dateOfDiscovery, newObject.SpaceObjectColor, newObject.Weight));
 
                     objects.Add(newObject);
                     new_moons.Add(newObject);
@@ -222,39 +212,7 @@ namespace WinFormsApp1
         {
             richTextBox1.Text = "";
         }
-        /*
-        private void ButtonMakePlanet_Click(object sender, EventArgs e)
-        {
-            //Planet empty = new Planet();
 
-
-            //Planet Earth = new Planet("Солнце", 5.9736, 108.321, 9.78);
-
-            //Planet Earth;
-            //Earth.name = "Основы программирования";
-            //Earth.mass = 85;
-            //Earth.volume = 3;
-            //Earth.accelerationOfFreeFall = 9.78;
-
-            string msg_default = "Конструктор по умолчанию:\n" +
-                "Название планеты: {0}\n" +
-                "Масса планеты: {1} (10^24 кг)\n" +
-                "Объем планеты: {2} (10^10 км^3)\n" +
-                "Ускорение свободного падения: {3} (м/с^2)\n************************\n";
-
-            string msg_Earth = "Перегруженный конструктор:\n" +
-                "Название планеты: {0}\n" +
-                "Масса планеты: {1} (10^24 кг)\n" +
-                "Объем планеты: {2} (10^10 км^3)\n" +
-                "Ускорение свободного падения: {3} (м/с^2)\n************************\n";
-
-
-            //richTextBox1.AppendText(String.Format(msg_default, empty.Name, empty.mass, empty.volume, empty.accelerationOfFreeFall));
-
-
-            //richTextBox1.AppendText(String.Format(msg_Earth, Earth.Name, Earth.mass, Earth.volume, Earth.accelerationOfFreeFall));
-
-        }*/
 
 
         private void addPhoto_Click(object sender, EventArgs e)
@@ -262,9 +220,23 @@ namespace WinFormsApp1
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
                 pictureBox2.Refresh();
+                star_for_methods.Photo = openFileDialog1.FileName;
+                if (!string.IsNullOrEmpty(comboBox1.Text))
+                {
+                    if (comboBox1.Text == "Планета")
+                    {
+                        check_planet.Photo = openFileDialog1.FileName;
+                        check_planet.showPhoto(pictureBox2);
+                    }
+                    else
+                    {
+                        star_for_methods.showPhoto(pictureBox2);
+                    }
+                }
+                else { star_for_methods.showPhoto(pictureBox2); }
                 //starSystemPhoto.writeToFile(openFileDialog1);
                 star_for_methods.Photo = openFileDialog1.FileName;
-                star_for_methods.showPhoto(pictureBox2);
+                //star_for_methods.showPhoto(pictureBox2);
                 pictureBox2.Tag = openFileDialog1.FileName;
             }
         }
@@ -402,6 +374,38 @@ namespace WinFormsApp1
                 this.numericUpDownAccelerationOfFreeFall.Visible = false;
                 this.labelAccelerationOfFreeFall.Visible = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //check_parent.print(richTextBox1);
+            check_star.print(richTextBox1);
+            richTextBox1.AppendText("\n" + check_star.Check_abstract + "\n");
+            check_planet.print(richTextBox1);
+            richTextBox1.AppendText("\n" + check_planet.Check_abstract + "\n");
+            check_moon.print(richTextBox1);
+            richTextBox1.AppendText("\n" + check_moon.Check_abstract + "\n");
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            fontDialog1.ShowColor = true;
+
+            fontDialog1.Font = textBox1.Font;
+            fontDialog1.Color = textBox1.ForeColor;
+
+            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
+            {
+                check_star.NameText(richTextBox1, fontDialog1.Font);
+
+            }
+            MessageBox.Show(check_star.ToString());
         }
     }
 }

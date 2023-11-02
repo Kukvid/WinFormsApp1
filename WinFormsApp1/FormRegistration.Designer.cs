@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            button3 = new Button();
+            button2 = new Button();
             buttonChangeTheme = new Button();
             label1 = new Label();
             pictureBox1 = new PictureBox();
@@ -68,6 +70,7 @@
             label2 = new Label();
             textBox3 = new TextBox();
             buttonMoreInfo = new Button();
+            fontDialog1 = new FontDialog();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -82,6 +85,8 @@
             // panel1
             // 
             panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
             panel1.Controls.Add(buttonChangeTheme);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Top;
@@ -89,6 +94,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1241, 103);
             panel1.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1056, 22);
+            button3.Name = "button3";
+            button3.Size = new Size(135, 29);
+            button3.TabIndex = 34;
+            button3.Text = "выбрать шрифт";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(12, 49);
+            button2.Name = "button2";
+            button2.Size = new Size(245, 29);
+            button2.TabIndex = 33;
+            button2.Text = "проверить абстрактные методы";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // buttonChangeTheme
             // 
@@ -116,7 +141,7 @@
             // 
             pictureBox1.Anchor = AnchorStyles.None;
             pictureBox1.Image = Properties.Resources.guap;
-            pictureBox1.Location = new Point(12, 822);
+            pictureBox1.Location = new Point(12, 729);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(160, 55);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -131,6 +156,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(230, 34);
             textBox1.TabIndex = 3;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // numericUpDown1
             // 
@@ -428,6 +454,7 @@
             pictureBox2.Size = new Size(241, 224);
             pictureBox2.TabIndex = 22;
             pictureBox2.TabStop = false;
+            pictureBox2.Tag = "C:\\\\Users\\\\Daniil\\\\source\\\\repos\\\\WinFormsApp1\\\\WinFormsApp1\\\\media\\\\default-star-system.jpg";
             // 
             // label11
             // 
@@ -522,7 +549,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             BackColor = Color.PeachPuff;
-            ClientSize = new Size(1241, 889);
+            ClientSize = new Size(1241, 808);
             Controls.Add(buttonMoreInfo);
             Controls.Add(textBox3);
             Controls.Add(label2);
@@ -602,5 +629,8 @@
         private TextBox textBox3;
         private Button buttonMoreInfo;
         private ComboBox comboBox1;
+        private Button button2;
+        private Button button3;
+        private FontDialog fontDialog1;
     }
 }

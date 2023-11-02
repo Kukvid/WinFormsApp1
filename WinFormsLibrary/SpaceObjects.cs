@@ -14,9 +14,9 @@ using System.Runtime.CompilerServices;
 //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 namespace WinFormsLibrary
 {
-    public class SpaceObject
+    public abstract class SpaceObject
     {
-        private string name;
+        private string name = "Космобъект";
         public string Name
         {
             get { return name; }
@@ -39,6 +39,8 @@ namespace WinFormsLibrary
             }
         }
 
+        public abstract string Check_abstract { get; set; }
+
         public long Age { get; private set; } = 400000000;
 
         private string photo = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg";
@@ -57,7 +59,7 @@ namespace WinFormsLibrary
         }
         static public string spaceObjectsPath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\spaceObjects.txt";
 
-        public string Type { get; set; }
+        public string Type { get; set; } = "SpaceObject";
         public Image Img
         {
             get { return getImageFromPath(this.Photo); }
@@ -66,8 +68,12 @@ namespace WinFormsLibrary
         {
             return Image.FromFile(path);
         }
+        public abstract void print(RichTextBox box);
+        /*{
+            box.AppendText(Name + " " + Type);
+        }*/
 
-        public void showPhoto(PictureBox box)
+        public virtual void showPhoto(PictureBox box)
         {
             /*
             Graphics g = Graphics.FromHwnd(box.Handle);
@@ -83,8 +89,7 @@ namespace WinFormsLibrary
             this.Age = age;
         }
         private DateTime dateOfDiscovery;
-
-        public DateTime DateOfDiscovery
+        public virtual DateTime DateOfDiscovery
         {
             get { return dateOfDiscovery; }
             set
@@ -100,6 +105,7 @@ namespace WinFormsLibrary
                 }
             }
         }
+
         public string GetParsedColorFromString(string colorString)
         {
             if (colorString.StartsWith("Color [") && colorString.EndsWith("]"))
@@ -169,18 +175,44 @@ namespace WinFormsLibrary
         }
 
     }
-    public class Planet: SpaceObject{
+    public sealed class Planet : SpaceObject {
         public double Weight { get; set; } = 1;
         //public long Volume { get; set; } = 1000000;
+        public override string Check_abstract { get; set; } = "abstract Planet";
+
         public double AccelerationOfFreeFall { get; set; } = 9.8;
+
+        private DateTime dateOfDiscovery;
+        public override DateTime DateOfDiscovery {
+            get { return dateOfDiscovery; }
+            set {
+                if (value > DateTime.Now)
+                {
+                    dateOfDiscovery = DateTime.Parse("12.04.2004 00:00");
+
+                }
+                else
+                {
+                    dateOfDiscovery = DateTime.Parse(value.ToString("dd.MM.yyyy HH:mm"));
+                }
+            }
+        }
         private string getPlanetText()
         {
             string res_string = "Планета" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
                  "!!!" + this.DateOfDiscovery.ToString("dd.MM.yyyy hh:mm") + "!!!" +
                  this.Weight.ToString() + "!!!" + this.AccelerationOfFreeFall.ToString()
-                 +"!!!" + this.SpaceObjectColor + "!!!" + this.Photo;
+                 + "!!!" + this.SpaceObjectColor + "!!!" + this.Photo;
 
             return res_string;
+        }
+        public override sealed void showPhoto(PictureBox box)
+        {
+            base.showPhoto(box);
+            MessageBox.Show("Я из переопределнного метода showPhoto");
+        }
+        public override void print(RichTextBox box){
+            box.AppendText(Name + " " + Type);
         }
         public void writeToFile()
         {
@@ -248,12 +280,30 @@ namespace WinFormsLibrary
             this.AccelerationOfFreeFall = accelerationOfFreeFall;
         }
     }
-
+    // Не может наследоваться от запечатанного класса
+    /*
+    public class SmallPlanet: Planet
+    {
+        
+        public override void showPhoto(PictureBox box)
+        {
+            base.showPhoto(box);
+            MessageBox.Show("Я из переопределнного метода showPhoto");
+        }
+        public SmallPlanet(): base() {}
+    }*/
+    
     public class Moon : SpaceObject
     {
         public double Weight { get; set; } = 1;
+        public override string Check_abstract { get; set; } = "abstract Moon";
+        public override void print(RichTextBox box)
+        {
+            box.AppendText(Name + " " + Type);
+        }
         private string getMoonText()
         {
+            
             string res_string = "Луна" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
                  "!!!" + this.DateOfDiscovery.ToString("dd.MM.yyyy hh:mm") + "!!!" +
                  this.Weight.ToString() + "!!!" + this.SpaceObjectColor + "!!!" + this.Photo;
@@ -307,6 +357,7 @@ namespace WinFormsLibrary
         }
         public Moon() : base() {
             this.Type = "Луна";
+            
         }
 
         public Moon(string name, long Age, double weight, DateTime DateOfDiscovery, Color moonColor, string photo) : base(name, Age,DateOfDiscovery, moonColor, photo)
@@ -322,14 +373,25 @@ namespace WinFormsLibrary
 
         static public string openFileDialogFilePath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\openFileDialog.txt"; 
         static public string saveFileDialogFilePath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\saveFileDialog.txt";
+        public override string Check_abstract { get; set; } = "abstract Star";
 
-
+        public void NameText(RichTextBox rtb, Font newFont)
+        {
+            rtb.Font = newFont;
+        }
+        public override void print(RichTextBox box)
+        {
+            box.AppendText(Name + " " + Type);
+        }
         public int calculateDaysFromDateOfDiscovery(DateTime dateOfDiscoveryTemp)
         {
             return (DateTime.Now - this.DateOfDiscovery).Days;
         }
-        
 
+        public override string ToString()
+        {
+            return "ToString()";
+        }
         private string getStarText()
         {
             string res_string = "Звезда" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
@@ -383,8 +445,8 @@ namespace WinFormsLibrary
                         {
                             Star temp = new Star();
                             temp.Name = system_line[1];
-                            //temp.CountStars = int.Parse(system_line[1]);
                             temp.setAge(long.Parse(system_line[2]));
+
                             temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
 
                             temp.SpaceObjectColor = temp.ParseColor(system_line[4]);
@@ -397,25 +459,6 @@ namespace WinFormsLibrary
             }
             return stars;
         }
-
-        
-            /*
-        static public int readFromFile(OpenFileDialog openFileDialog)
-        {
-            StreamReader sr = new StreamReader(SpaceObject.spaceObjectsPath, Encoding.UTF8, true);
-            string s = sr.ReadToEnd();
-            string[] lines = s.Split(Environment.NewLine);
-
-            return lines.Count() - 1;
-        }
-        static public int readFromFile(SaveFileDialog saveFileDialog)
-        {
-            StreamReader sr = new StreamReader(saveFileDialogFilePath, Encoding.UTF8, true);
-            string s = sr.ReadToEnd();
-            string[] lines = s.Split(Environment.NewLine);
-
-            return lines.Count() - 1;
-        }*/
         
 
         public Star(): base() {

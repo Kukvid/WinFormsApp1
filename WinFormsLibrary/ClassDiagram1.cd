@@ -1,28 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
   <Class Name="WinFormsLibrary.SpaceObject" Collapsed="true">
-    <Position X="5.5" Y="2.25" Width="1.5" />
+    <Position X="4.25" Y="4" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAwIAACACCQAEAAAAQAAAAUAACEAACAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAwIAACACCQAEAAAAQAAAAUAACEAQCAAAAAAAA=</HashCode>
       <FileName>SpaceObjects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WinFormsLibrary.Planet">
-    <Position X="5.5" Y="4" Width="1.5" />
+  <Class Name="WinFormsLibrary.Planet" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgAAQABAAAAAAAAAAAAAAAAACAgAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAgACQABAAAAAACAAAAAAAAAACAgAACAAAAABAAAAAA=</HashCode>
       <FileName>SpaceObjects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WinFormsLibrary.Moon">
-    <Position X="3.5" Y="4" Width="1.5" />
+  <Class Name="WinFormsLibrary.SmallPlanet">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SpaceObjects.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WinFormsLibrary.Moon" Collapsed="true">
+    <Position X="2" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAABAAAQAAAAAAAAAAAAACAgAAAAAAAABAAAAAA=</HashCode>
       <FileName>SpaceObjects.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="WinFormsLibrary.Star">
-    <Position X="7.5" Y="4" Width="1.5" />
+  <Class Name="WinFormsLibrary.Star" Collapsed="true">
+    <Position X="6.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgABAAABAAAAAAAAAAAAAAAAAAAQAAAAAAAgBAAAAAA=</HashCode>
       <FileName>SpaceObjects.cs</FileName>
