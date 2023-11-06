@@ -109,9 +109,9 @@
             // 
             button2.Location = new Point(12, 49);
             button2.Name = "button2";
-            button2.Size = new Size(245, 29);
+            button2.Size = new Size(245, 51);
             button2.TabIndex = 33;
-            button2.Text = "проверить абстрактные методы";
+            button2.Text = "проверить класс данных событий";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -391,6 +391,7 @@
             numericUpDownWeight.TabIndex = 39;
             numericUpDownWeight.ThousandsSeparator = true;
             numericUpDownWeight.Visible = false;
+            numericUpDownWeight.ValueChanged += numericUpDownWeight_ValueChanged;
             // 
             // label12
             // 

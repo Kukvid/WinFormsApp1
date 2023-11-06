@@ -39,12 +39,19 @@ namespace WinFormsLibrary
             }
         }
 
-        public abstract string Check_abstract { get; set; }
-
         public long Age { get; private set; } = 400000000;
+
 
         private string photo = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg";
         
+
+        public delegate void SpaceObjectPhotoHandler(string path);
+
+        public event SpaceObjectPhotoHandler SpaceObjectPhotoCheck;
+
+        public delegate void ObjectHandler(object sender, AccountEventArgs e);
+        public event ObjectHandler ObjectEventCheck;
+
         public Color SpaceObjectColor { get; set; }
         public string Photo
         {
@@ -57,6 +64,36 @@ namespace WinFormsLibrary
                 }
             }
         }
+        public virtual void setPhoto(string photo, bool isRead = false)
+        {
+            if (isRead)
+            {
+                this.Photo = photo; }
+            else
+            {
+                this.Photo = photo;
+                if (photo == "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg")
+                {
+                    SpaceObjectPhotoCheck.Invoke("Установлена дефолтная картинка");
+                }
+                else
+                {
+                    string[] splitted_photo = photo.Split('\\');
+                    SpaceObjectPhotoCheck.Invoke($"Установлена картинка {splitted_photo[splitted_photo.Length - 1]}");
+                }
+            }
+        }
+        public void checkObjectHandler(string msg)
+        {
+            ObjectEventCheck.Invoke(this, new AccountEventArgs($"{msg}\n" +
+                $"Возраст текущего объекта:{this.Age}\n",
+                this.Age));
+        }
+        public static void DisplayMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
         static public string spaceObjectsPath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\spaceObjects.txt";
 
         public string Type { get; set; } = "SpaceObject";
@@ -68,10 +105,7 @@ namespace WinFormsLibrary
         {
             return Image.FromFile(path);
         }
-        public abstract void print(RichTextBox box);
-        /*{
-            box.AppendText(Name + " " + Type);
-        }*/
+        //public abstract void print(RichTextBox box);
 
         public virtual void showPhoto(PictureBox box)
         {
@@ -153,7 +187,6 @@ namespace WinFormsLibrary
                 }
             }
         }
-        //base(name, Age, DateOfDiscovery, starColor photo)
         public SpaceObject() { }
 
         public SpaceObject(string name)
@@ -171,14 +204,13 @@ namespace WinFormsLibrary
             this.Age = Age;
             this.DateOfDiscovery = DateOfDiscovery;
             this.SpaceObjectColor = ObjectColor;
-            this.Photo = photoAddr;
+            this.setPhoto(photoAddr);
         }
 
     }
     public sealed class Planet : SpaceObject {
         public double Weight { get; set; } = 1;
         //public long Volume { get; set; } = 1000000;
-        public override string Check_abstract { get; set; } = "abstract Planet";
 
         public double AccelerationOfFreeFall { get; set; } = 9.8;
 
@@ -197,6 +229,14 @@ namespace WinFormsLibrary
                 }
             }
         }
+        public override void setPhoto(string photo, bool isRead = false)
+        {
+            if (!isRead)
+            {
+                MessageBox.Show("Следующее сообщение из переопределенного метода");
+            }
+            base.setPhoto(photo, isRead);
+        }
         private string getPlanetText()
         {
             string res_string = "Планета" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
@@ -209,10 +249,7 @@ namespace WinFormsLibrary
         public override sealed void showPhoto(PictureBox box)
         {
             base.showPhoto(box);
-            MessageBox.Show("Я из переопределнного метода showPhoto");
-        }
-        public override void print(RichTextBox box){
-            box.AppendText(Name + " " + Type);
+            //MessageBox.Show("Я из переопределнного метода showPhoto");
         }
         public void writeToFile()
         {
@@ -244,11 +281,9 @@ namespace WinFormsLibrary
                             temp.setAge(long.Parse(system_line[2]));
                             temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
                             temp.Weight = double.Parse(system_line[4]);
-                            //temp.Volume = long.Parse(system_line[5]);
-                            //MessageBox.Show(system_line[5]);
                             temp.AccelerationOfFreeFall = double.Parse(system_line[5]);
                             temp.SpaceObjectColor = temp.ParseColor(system_line[6]);
-                            temp.Photo = system_line[7];
+                            temp.setPhoto(system_line[7], true);
                             planets.Add(temp);
                         }
                     }
@@ -296,11 +331,7 @@ namespace WinFormsLibrary
     public class Moon : SpaceObject
     {
         public double Weight { get; set; } = 1;
-        public override string Check_abstract { get; set; } = "abstract Moon";
-        public override void print(RichTextBox box)
-        {
-            box.AppendText(Name + " " + Type);
-        }
+
         private string getMoonText()
         {
             
@@ -341,7 +372,7 @@ namespace WinFormsLibrary
                             temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
                             temp.Weight = double.Parse(system_line[4]);
                             temp.SpaceObjectColor = temp.ParseColor(system_line[5]);
-                            temp.Photo = system_line[6];
+                            temp.setPhoto(system_line[6], true);
                             moons.Add(temp);
                         }
                     }
@@ -373,16 +404,12 @@ namespace WinFormsLibrary
 
         static public string openFileDialogFilePath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\openFileDialog.txt"; 
         static public string saveFileDialogFilePath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\saveFileDialog.txt";
-        public override string Check_abstract { get; set; } = "abstract Star";
 
         public void NameText(RichTextBox rtb, Font newFont)
         {
             rtb.Font = newFont;
         }
-        public override void print(RichTextBox box)
-        {
-            box.AppendText(Name + " " + Type);
-        }
+
         public int calculateDaysFromDateOfDiscovery(DateTime dateOfDiscoveryTemp)
         {
             return (DateTime.Now - this.DateOfDiscovery).Days;
@@ -450,7 +477,7 @@ namespace WinFormsLibrary
                             temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
 
                             temp.SpaceObjectColor = temp.ParseColor(system_line[4]);
-                            temp.Photo = system_line[5];
+                            temp.setPhoto(system_line[5],true);
                             stars.Add(temp);
                         }
                     }
@@ -467,7 +494,7 @@ namespace WinFormsLibrary
         public Star(string name, string photo): base(name)
         {
             this.Type = "Звезда";
-            this.Photo = photo;
+            this.setPhoto(photo, true);
         }
         public Star(string name, long Age, DateTime DateOfDiscovery, Color starColor, string photo) : base(name, Age, DateOfDiscovery, starColor, photo)
         {

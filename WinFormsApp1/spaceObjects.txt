@@ -19,3 +19,4 @@
 Планета!!!321321!!!321!!!12.04.2004 12:00!!!4,32E-05!!!432!!!Color [A=255, R=0, G=128, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\fobos-sputnik-planety-mars.jpg
 Звезда!!!БЭЭЭМ!!!332!!!25.10.2023 05:09!!!Color [A=255, R=255, G=128, B=255]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg
 Звезда!!!БЭЭЭМКЭЭЭТ!!!332!!!25.10.2023 05:09!!!Color [A=255, R=255, G=128, B=255]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\themeCats.jpg
+Звезда!!!Звезда Тестовая!!!31231!!!02.11.2023 09:22!!!Color [A=255, R=128, G=128, B=255]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg

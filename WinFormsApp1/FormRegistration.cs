@@ -56,7 +56,24 @@ namespace WinFormsApp1
                 objects.Add((SpaceObject)moon);
             }
 
+            star_for_methods.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
+            star_for_methods.SpaceObjectPhotoCheck += (string msg) =>
+            {
+                richTextBox1.AppendText($"Сработал динамический обработчик событий\n" +
+                    $"Сообщение: {msg}\n");
+            };
 
+            star_for_methods.ObjectEventCheck += DisplayMessage;
+
+            check_planet.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
+            //check_planet.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
+            //star_for_methods
+        }
+
+
+        private static void DisplayMessage(object obj, AccountEventArgs e)
+        {
+            MessageBox.Show(String.Format($"Был создан объект со следующим сообщением: \n{e.Message}\n"));
         }
 
 
@@ -220,23 +237,25 @@ namespace WinFormsApp1
             if (openFileDialog1.ShowDialog() != DialogResult.Cancel)
             {
                 pictureBox2.Refresh();
+
+                //star_for_methods.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
+                //star_for_methods.setPhoto(openFileDialog1.FileName);
                 star_for_methods.Photo = openFileDialog1.FileName;
                 if (!string.IsNullOrEmpty(comboBox1.Text))
                 {
                     if (comboBox1.Text == "Планета")
                     {
-                        check_planet.Photo = openFileDialog1.FileName;
+                        check_planet.setPhoto(openFileDialog1.FileName);
                         check_planet.showPhoto(pictureBox2);
                     }
                     else
                     {
+                        star_for_methods.setPhoto(openFileDialog1.FileName);
                         star_for_methods.showPhoto(pictureBox2);
                     }
                 }
                 else { star_for_methods.showPhoto(pictureBox2); }
-                //starSystemPhoto.writeToFile(openFileDialog1);
-                star_for_methods.Photo = openFileDialog1.FileName;
-                //star_for_methods.showPhoto(pictureBox2);
+
                 pictureBox2.Tag = openFileDialog1.FileName;
             }
         }
@@ -265,17 +284,10 @@ namespace WinFormsApp1
             listBox1.DisplayMember = "Name";
             listBox1.ValueMember = "Name";
 
-            /*
-            pictureBox2.Image = Properties.Resources.default_star_system;
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-
-            //pictureBox3.Image = Properties.Resources.default_star_system;
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            */
             this.dateTimePicker1.Text = DateTime.Now.ToString();
             this.textBox2.DataBindings.Add(new Binding("Text", objects, "Name"));
             this.numericUpDownAge.DataBindings.Add(new Binding("Value", objects, "Age"));
-            //this.numericUpDown4.DataBindings.Add(new Binding("Text", systems, "CountStars"));
+
             this.dateTimePicker2.DataBindings.Add(new Binding("Value", objects, "DateOfDiscovery"));
             this.button1.DataBindings.Add(new Binding("BackColor", objects, "SpaceObjectColor"));
             this.pictureBox3.DataBindings.Add(new Binding("Image", objects, "Img"));
@@ -379,12 +391,7 @@ namespace WinFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             //check_parent.print(richTextBox1);
-            check_star.print(richTextBox1);
-            richTextBox1.AppendText("\n" + check_star.Check_abstract + "\n");
-            check_planet.print(richTextBox1);
-            richTextBox1.AppendText("\n" + check_planet.Check_abstract + "\n");
-            check_moon.print(richTextBox1);
-            richTextBox1.AppendText("\n" + check_moon.Check_abstract + "\n");
+            star_for_methods.checkObjectHandler("Сообщение при нажатии на кнопку проверки Класса данных события");
 
         }
 
@@ -406,6 +413,11 @@ namespace WinFormsApp1
 
             }
             MessageBox.Show(check_star.ToString());
+        }
+
+        private void numericUpDownWeight_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
