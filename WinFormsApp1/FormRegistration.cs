@@ -56,6 +56,7 @@ namespace WinFormsApp1
                 objects.Add((SpaceObject)moon);
             }
 
+            /*
             star_for_methods.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
             star_for_methods.SpaceObjectPhotoCheck += (string msg) =>
             {
@@ -66,15 +67,17 @@ namespace WinFormsApp1
             star_for_methods.ObjectEventCheck += DisplayMessage;
 
             check_planet.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
+            */
+
             //check_planet.SpaceObjectPhotoCheck += SpaceObject.DisplayMessage;
             //star_for_methods
         }
 
-
+        /*
         private static void DisplayMessage(object obj, AccountEventArgs e)
         {
             MessageBox.Show(String.Format($"Был создан объект со следующим сообщением: \n{e.Message}\n"));
-        }
+        }*/
 
 
         private void ButtonChooseEyeColor_Click(object sender, System.EventArgs e)
@@ -391,8 +394,14 @@ namespace WinFormsApp1
         private void button2_Click(object sender, EventArgs e)
         {
             //check_parent.print(richTextBox1);
-            star_for_methods.checkObjectHandler("Сообщение при нажатии на кнопку проверки Класса данных события");
-
+            //star_for_methods.checkObjectHandler("Сообщение при нажатии на кнопку проверки Класса данных события");
+            //ISpaceObjectsRegistration SpaceObjectName = new Star();
+            //SpaceObjectName.Name;
+            ISpaceObjectRegistration2 SpaceObjectInterface = new Star();
+            SpaceObjectInterface.Photo = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\interface.jpg";
+            SpaceObjectInterface.showPhoto(pictureBox2);
+            //SpaceObjectInterface.
+            richTextBox1.AppendText(((Star)SpaceObjectInterface).Name);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -407,12 +416,13 @@ namespace WinFormsApp1
             fontDialog1.Font = textBox1.Font;
             fontDialog1.Color = textBox1.ForeColor;
 
+
             if (fontDialog1.ShowDialog() != DialogResult.Cancel)
             {
                 check_star.NameText(richTextBox1, fontDialog1.Font);
 
             }
-            MessageBox.Show(check_star.ToString());
+            //MessageBox.Show(check_star.ToString());
         }
 
         private void numericUpDownWeight_ValueChanged(object sender, EventArgs e)

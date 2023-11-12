@@ -14,7 +14,7 @@ using System.Runtime.CompilerServices;
 //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 namespace WinFormsLibrary
 {
-    public abstract class SpaceObject
+    public abstract class SpaceObject: ISpaceObjectsRegistration, ISpaceObjectRegistration2
     {
         private string name = "Космобъект";
         public string Name
@@ -74,18 +74,18 @@ namespace WinFormsLibrary
                 this.Photo = photo;
                 if (photo == "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg")
                 {
-                    SpaceObjectPhotoCheck.Invoke("Установлена дефолтная картинка");
+                    SpaceObjectPhotoCheck?.Invoke("Установлена дефолтная картинка");
                 }
                 else
                 {
                     string[] splitted_photo = photo.Split('\\');
-                    SpaceObjectPhotoCheck.Invoke($"Установлена картинка {splitted_photo[splitted_photo.Length - 1]}");
+                    SpaceObjectPhotoCheck?.Invoke($"Установлена картинка {splitted_photo[splitted_photo.Length - 1]}");
                 }
             }
         }
         public void checkObjectHandler(string msg)
         {
-            ObjectEventCheck.Invoke(this, new AccountEventArgs($"{msg}\n" +
+            ObjectEventCheck?.Invoke(this, new AccountEventArgs($"{msg}\n" +
                 $"Возраст текущего объекта:{this.Age}\n",
                 this.Age));
         }
@@ -490,6 +490,7 @@ namespace WinFormsLibrary
 
         public Star(): base() {
             this.Type = "Звезда";
+            this.Name = "Звезда";
         }
         public Star(string name, string photo): base(name)
         {
