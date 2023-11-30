@@ -6,22 +6,29 @@ using System.Threading.Tasks;
 
 namespace WinFormsLibrary
 {
-    public interface ISpaceObjectsRegistration
+
+    public interface ISpaceObject
     {
         string Name { get; set; }
-
-    }
-
-    public interface ISpaceObjectRegistration2
-    {
-        long Age { get; }
-
-        string Photo { get; set; }
+        long Age { get;}
+        
+        string Photo { get;}
 
         Image Img { get; }
 
-        void setPhoto(string photo, bool isRead);
+        Color SpaceObjectColor { get; set; }
 
+        DateTime DateOfDiscovery { get; set; }
+
+        string GetParsedColorFromString(string colorString);
+
+        Color ParseColor(string input);
+
+        void setAge(long age);
+        void setPhoto(string photo, bool isRead);
+        void setPhoto(string photo);
+
+        void showPhoto(Form box, string themePhoto);
         void showPhoto(PictureBox box);
 
         Image getImageFromPath(string path);

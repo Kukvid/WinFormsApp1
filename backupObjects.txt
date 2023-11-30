@@ -1,0 +1,16 @@
+Звезда!!!Солнце!!!9999999999!!!10.08.1796 11:49!!!Color [Yellow]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\sun.jpg
+Звезда!!!Альфа Центавра!!!6000000000!!!08.10.2023 12:07!!!Color [A=255, R=0, G=128, B=192]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Alfa-TSentavra-V.jpg
+Звезда!!!Цефей!!!5000000000!!!08.10.2023 12:07!!!Color [A=255, R=128, G=0, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Cepheus.jpg
+Звезда!!!Лаланд 21185!!!5000000000!!!08.10.2023 12:07!!!Color [Red]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Laland 21185.jpg
+Звезда!!!Ро змееносца!!!6000000000!!!08.10.2023 01:33!!!Color [Purple]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Rho Ophiuchi.png
+Звезда!!!ВР-124!!!6000000000!!!08.10.2023 01:33!!!Color [A=255, R=157, G=96, B=151]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\DyingStar WR-124.png
+Звезда!!!Сириус!!!6000000000!!!08.10.2023 01:36!!!Color [Aqua]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Sirius.jpg
+Звезда!!!Альдебаран!!!6600000000!!!08.10.2023 01:42!!!Color [A=255, R=255, G=128, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Aldebaran.jpg
+Звезда!!!Капелла!!!5600000000!!!09.10.2023 09:46!!!Color [Aqua]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Kapella_Star.jpg
+Звезда!!!Альтаир!!!999999999!!!14.10.2023 11:59!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Altair.jpg
+Планета!!!Земля!!!4500000000!!!05.04.2007 11:36!!!5,97!!!9,807!!!Color [A=255, R=0, G=0, B=160]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Earth.jpg
+Планета!!!Уран!!!9999999999!!!13.03.1781 04:09!!!86,81!!!8,87!!!Color [A=255, R=214, G=214, B=214]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Uranus.jpg
+Луна!!!Деймос(спутник Марса)!!!4500000000!!!12.08.1877 04:21!!!0,000000000148!!!Color [A=255, R=248, G=218, B=207]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\dejmos-sputnikj-planety-mars.jpg
+Луна!!!Фобос(спутник Марса)!!!4500000000!!!15.08.1870 10:38!!!1,072E-09!!!Color [A=255, R=175, G=154, B=154]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\fobos-sputnik-planety-mars.jpg
+Планета!!!Марс!!!4500000000!!!15.08.1870 10:38!!!0,0639!!!3,71!!!Color [A=255, R=238, G=122, B=60]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Mars.jpg
+Планета!!!Венера!!!231231!!!12.04.2004 12:00!!!4,867!!!8,87!!!Color [A=255, R=255, G=128, B=0]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Venus.jpg

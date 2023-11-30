@@ -5,23 +5,26 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Reflection;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
-//Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+using System.DirectoryServices;
+using System.Xml.Linq;
+
 namespace WinFormsLibrary
 {
-    public abstract class SpaceObject: ISpaceObjectsRegistration, ISpaceObjectRegistration2
+    public abstract class SpaceObject: ISpaceObject
     {
         private string name = "Космобъект";
+
         public string Name
         {
             get { return name; }
             set
             {
+                //MessageBox.Show(value);
                 if (value[0].ToString().ToUpper() == value[0].ToString())
                 {
                     name = value;
@@ -39,24 +42,33 @@ namespace WinFormsLibrary
             }
         }
 
+        public string Type
+        {
+            get
+            {
+                return ToString();
+            }
+        }
+
+        public string NameWithType
+        {
+            get
+            {
+                return GetNameWithType();
+            }
+        }
+
         public long Age { get; private set; } = 400000000;
 
 
         private string photo = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg";
         
 
-        public delegate void SpaceObjectPhotoHandler(string path);
-
-        public event SpaceObjectPhotoHandler SpaceObjectPhotoCheck;
-
-        public delegate void ObjectHandler(object sender, AccountEventArgs e);
-        public event ObjectHandler ObjectEventCheck;
-
         public Color SpaceObjectColor { get; set; }
         public string Photo
         {
             get { return photo; }
-            set
+            private set
             {
                 if (value != "")
                 {
@@ -64,11 +76,20 @@ namespace WinFormsLibrary
                 }
             }
         }
-        public virtual void setPhoto(string photo, bool isRead = false)
+        //
+        public delegate void SpaceObjectPhotoHandler(string path);
+
+        public event SpaceObjectPhotoHandler SpaceObjectPhotoCheck;
+
+        public delegate void ObjectHandler(object sender, AccountEventArgs e);
+        public event ObjectHandler ObjectEventCheck;
+        // Добавить в интерфейс
+        public void setPhoto(string photo, bool isRead)
         {
             if (isRead)
             {
-                this.Photo = photo; }
+                this.Photo = photo;
+            }
             else
             {
                 this.Photo = photo;
@@ -83,47 +104,41 @@ namespace WinFormsLibrary
                 }
             }
         }
+        public void setPhoto(string photo)
+        {
+            this.Photo = photo;
+            if (photo == "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg")
+            {
+                SpaceObjectPhotoCheck?.Invoke("Установлена дефолтная картинка");
+            }
+            else
+            {
+                string[] splitted_photo = photo.Split('\\');
+                SpaceObjectPhotoCheck?.Invoke($"Установлена картинка {splitted_photo[splitted_photo.Length - 1]}");
+            }
+        }
+        /*
         public void checkObjectHandler(string msg)
         {
             ObjectEventCheck?.Invoke(this, new AccountEventArgs($"{msg}\n" +
                 $"Возраст текущего объекта:{this.Age}\n",
                 this.Age));
         }
+        
         public static void DisplayMessage(string message)
         {
             MessageBox.Show(message);
-        }
+        }*/
 
         static public string spaceObjectsPath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\spaceObjects.txt";
 
-        public string Type { get; set; } = "SpaceObject";
         public Image Img
         {
             get { return getImageFromPath(this.Photo); }
         }
-        public Image getImageFromPath(string path)
-        {
-            return Image.FromFile(path);
-        }
-        //public abstract void print(RichTextBox box);
 
-        public virtual void showPhoto(PictureBox box)
-        {
-            /*
-            Graphics g = Graphics.FromHwnd(box.Handle);
-            g.DrawImage(Image.FromFile(this.Photo), new Rectangle(0, 0, box.Width, box.Height));*/
-            box.Image = Img;
-        }
-        public void showPhoto(Form box, string themePhoto)
-        {
-            box.BackgroundImage = Image.FromFile(themePhoto);
-        }
-        public void setAge(long age)
-        {
-            this.Age = age;
-        }
         private DateTime dateOfDiscovery;
-        public virtual DateTime DateOfDiscovery
+        public DateTime DateOfDiscovery
         {
             get { return dateOfDiscovery; }
             set
@@ -138,6 +153,37 @@ namespace WinFormsLibrary
                     dateOfDiscovery = DateTime.Parse(value.ToString("dd.MM.yyyy HH:mm"));
                 }
             }
+        }
+        public Image getImageFromPath(string path)
+        {
+            return Image.FromFile(path);
+        }
+        //public abstract void print(RichTextBox box);
+
+        public void showPhoto(PictureBox box)
+        {
+            /*
+            Graphics g = Graphics.FromHwnd(box.Handle);
+            g.DrawImage(Image.FromFile(this.Photo), new Rectangle(0, 0, box.Width, box.Height));*/
+            box.Image = Img;
+        }
+        public void showPhoto(Form box, string themePhoto)
+        {
+            box.BackgroundImage = Image.FromFile(themePhoto);
+        }
+        public void setAge(long age)
+        {
+            this.Age = age;
+        }
+
+        public string Join(string separator, List<SpaceObject> objects)
+        {
+            string result_string = objects[0].Name;
+            for (int i = 1; i < objects.Count; i++)
+            {
+                result_string += separator + objects[i].Name;
+            }
+            return result_string;
         }
 
         public string GetParsedColorFromString(string colorString)
@@ -187,6 +233,16 @@ namespace WinFormsLibrary
                 }
             }
         }
+        
+        public override string ToString()
+        {
+            return "Космообъект";
+        }
+        public string GetNameWithType()
+        {
+            return Name + " ["+ this.ToString()+"]";
+        }
+        public virtual void writeToFile() { }
         public SpaceObject() { }
 
         public SpaceObject(string name)
@@ -198,6 +254,14 @@ namespace WinFormsLibrary
             this.Name = name;
             this.Age = age;
         }
+        public SpaceObject(string name, long age, Color ObjectColor,DateTime DateOfDiscovery, string photoPath)
+        {
+            this.Name = name;
+            this.Age = age;
+            this.SpaceObjectColor = ObjectColor;
+            this.DateOfDiscovery = DateOfDiscovery;
+            this.photo = photoPath;
+        }
         public SpaceObject(string name, long Age, DateTime DateOfDiscovery, Color ObjectColor, string photoAddr)
         {
             this.Name = name;
@@ -207,299 +271,5 @@ namespace WinFormsLibrary
             this.setPhoto(photoAddr);
         }
 
-    }
-    public sealed class Planet : SpaceObject {
-        public double Weight { get; set; } = 1;
-        //public long Volume { get; set; } = 1000000;
-
-        public double AccelerationOfFreeFall { get; set; } = 9.8;
-
-        private DateTime dateOfDiscovery;
-        public override DateTime DateOfDiscovery {
-            get { return dateOfDiscovery; }
-            set {
-                if (value > DateTime.Now)
-                {
-                    dateOfDiscovery = DateTime.Parse("12.04.2004 00:00");
-
-                }
-                else
-                {
-                    dateOfDiscovery = DateTime.Parse(value.ToString("dd.MM.yyyy HH:mm"));
-                }
-            }
-        }
-        public override void setPhoto(string photo, bool isRead = false)
-        {
-            if (!isRead)
-            {
-                MessageBox.Show("Следующее сообщение из переопределенного метода");
-            }
-            base.setPhoto(photo, isRead);
-        }
-        private string getPlanetText()
-        {
-            string res_string = "Планета" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
-                 "!!!" + this.DateOfDiscovery.ToString("dd.MM.yyyy hh:mm") + "!!!" +
-                 this.Weight.ToString() + "!!!" + this.AccelerationOfFreeFall.ToString()
-                 + "!!!" + this.SpaceObjectColor + "!!!" + this.Photo;
-
-            return res_string;
-        }
-        public override sealed void showPhoto(PictureBox box)
-        {
-            base.showPhoto(box);
-            //MessageBox.Show("Я из переопределнного метода showPhoto");
-        }
-        public void writeToFile()
-        {
-
-            StreamWriter streamWriter = new StreamWriter(SpaceObject.spaceObjectsPath, true);
-            streamWriter.WriteLine(getPlanetText());
-            streamWriter.Close();
-        }
-        static public List<Planet> readFromFile()
-        {
-            List<Planet> planets = new List<Planet>();
-            FileInfo fileInfo = new FileInfo(SpaceObject.spaceObjectsPath);
-            if (fileInfo.Length != 0)
-            {
-
-                StreamReader sr = new StreamReader(SpaceObject.spaceObjectsPath, Encoding.UTF8, true);
-                string s = sr.ReadToEnd();
-                string[] lines = s.Split(Environment.NewLine);
-
-                foreach (string line in lines)
-                {
-                    if (line != string.Empty)
-                    {
-                        string[] system_line = line.Split("!!!");
-                        if (system_line[0] == "Планета")
-                        {
-                            Planet temp = new Planet();
-                            temp.Name = system_line[1];
-                            temp.setAge(long.Parse(system_line[2]));
-                            temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
-                            temp.Weight = double.Parse(system_line[4]);
-                            temp.AccelerationOfFreeFall = double.Parse(system_line[5]);
-                            temp.SpaceObjectColor = temp.ParseColor(system_line[6]);
-                            temp.setPhoto(system_line[7], true);
-                            planets.Add(temp);
-                        }
-                    }
-                }
-                sr.Close();
-            }
-            return planets;
-        }
-        public string getStringWithAdditionalInfo()
-        {
-            string message = this.Name + "\nВес планеты: " + this.Weight.ToString() + " *10^24 кг\n";
-            message += "Ускорение свободного падения: " + this.AccelerationOfFreeFall.ToString() + "м/c^2\n";
-            return message;
-        }
-        public Planet(): base() {
-            this.Type = "Планета";
-        }
-        public Planet(string name): base(name) {
-            this.Type = "Планета";
-        }
-
-        public Planet(string name, long Age): base(name) {
-            this.Type = "Планета";
-        }
-
-        public Planet(string name, long Age, double weight, double accelerationOfFreeFall, DateTime DateOfDiscovery, Color starColor, string photo) : base(name, Age, DateOfDiscovery, starColor, photo) {
-            this.Type = "Планета";
-            this.Weight = weight;
-            this.AccelerationOfFreeFall = accelerationOfFreeFall;
-        }
-    }
-    // Не может наследоваться от запечатанного класса
-    /*
-    public class SmallPlanet: Planet
-    {
-        
-        public override void showPhoto(PictureBox box)
-        {
-            base.showPhoto(box);
-            MessageBox.Show("Я из переопределнного метода showPhoto");
-        }
-        public SmallPlanet(): base() {}
-    }*/
-    
-    public class Moon : SpaceObject
-    {
-        public double Weight { get; set; } = 1;
-
-        private string getMoonText()
-        {
-            
-            string res_string = "Луна" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
-                 "!!!" + this.DateOfDiscovery.ToString("dd.MM.yyyy hh:mm") + "!!!" +
-                 this.Weight.ToString() + "!!!" + this.SpaceObjectColor + "!!!" + this.Photo;
-
-            return res_string;
-        }
-        public void writeToFile()
-        {
-
-            StreamWriter streamWriter = new StreamWriter(SpaceObject.spaceObjectsPath, true);
-            streamWriter.WriteLine(getMoonText());
-            streamWriter.Close();
-        }
-        static public List<Moon> readFromFile()
-        {
-            List<Moon> moons = new List<Moon>();
-            FileInfo fileInfo = new FileInfo(SpaceObject.spaceObjectsPath);
-            if (fileInfo.Length != 0)
-            {
-
-                StreamReader sr = new StreamReader(SpaceObject.spaceObjectsPath, Encoding.UTF8, true);
-                string s = sr.ReadToEnd();
-                string[] lines = s.Split(Environment.NewLine);
-
-                foreach (string line in lines)
-                {
-                    if (line != string.Empty)
-                    {
-                        string[] system_line = line.Split("!!!");
-                        if (system_line[0] == "Луна")
-                        {
-                            Moon temp = new Moon();
-                            temp.Name = system_line[1];
-                            temp.setAge(long.Parse(system_line[2]));
-                            temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
-                            temp.Weight = double.Parse(system_line[4]);
-                            temp.SpaceObjectColor = temp.ParseColor(system_line[5]);
-                            temp.setPhoto(system_line[6], true);
-                            moons.Add(temp);
-                        }
-                    }
-                }
-                sr.Close();
-            }
-            return moons;
-        }
-        public string getStringWithAdditionalInfo()
-        {
-            string message = this.Name + "\nВес луны: " +this.Weight.ToString() + " *10^24 кг\n";
-            return message;
-        }
-        public Moon() : base() {
-            this.Type = "Луна";
-            
-        }
-
-        public Moon(string name, long Age, double weight, DateTime DateOfDiscovery, Color moonColor, string photo) : base(name, Age,DateOfDiscovery, moonColor, photo)
-        {
-            this.Weight = weight;
-            this.Type = "Луна";
-        }
-    }
-
-        public class Star: SpaceObject
-        {   
- 
-
-        static public string openFileDialogFilePath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\openFileDialog.txt"; 
-        static public string saveFileDialogFilePath = "C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\saveFileDialog.txt";
-
-        public void NameText(RichTextBox rtb, Font newFont)
-        {
-            rtb.Font = newFont;
-        }
-
-        public int calculateDaysFromDateOfDiscovery(DateTime dateOfDiscoveryTemp)
-        {
-            return (DateTime.Now - this.DateOfDiscovery).Days;
-        }
-
-        public override string ToString()
-        {
-            return "ToString()";
-        }
-        private string getStarText()
-        {
-            string res_string = "Звезда" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
-                 "!!!" + this.DateOfDiscovery.ToString("dd.MM.yyyy hh:mm") + "!!!" + 
-                 this.SpaceObjectColor.ToString() + "!!!" + this.Photo;
-
-            return res_string;
-        }
-
-        public void writeToFile()
-        {
-            
-            StreamWriter streamWriter = new StreamWriter(SpaceObject.spaceObjectsPath, true);
-            streamWriter.WriteLine(getStarText());
-            streamWriter.Close();
-        }
-
-        public void writeToFile(OpenFileDialog openFileDialog)
-        {
-
-            StreamWriter streamWriter = new StreamWriter(openFileDialogFilePath, true);
-            streamWriter.WriteLine(openFileDialog.FileName);
-            streamWriter.Close();
-        }
-
-        public void writeToFile(SaveFileDialog saveFileDialog)
-        {
-
-            StreamWriter streamWriter = new StreamWriter(saveFileDialogFilePath, true);
-            streamWriter.WriteLine(saveFileDialog.FileName);
-            streamWriter.Close();
-        }
-
-        static public List<Star> readFromFile()
-        {
-            List<Star> stars = new List<Star>();
-            FileInfo fileInfo = new FileInfo(SpaceObject.spaceObjectsPath);
-            if (fileInfo.Length != 0)
-            {
-
-                StreamReader sr = new StreamReader(SpaceObject.spaceObjectsPath, Encoding.UTF8, true);
-                string s = sr.ReadToEnd();
-                string[] lines = s.Split(Environment.NewLine);
-
-                foreach (string line in lines)
-                {
-                    if (line != string.Empty)
-                    {
-                        string[] system_line = line.Split("!!!");
-                        if (system_line[0] == "Звезда")
-                        {
-                            Star temp = new Star();
-                            temp.Name = system_line[1];
-                            temp.setAge(long.Parse(system_line[2]));
-
-                            temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
-
-                            temp.SpaceObjectColor = temp.ParseColor(system_line[4]);
-                            temp.setPhoto(system_line[5],true);
-                            stars.Add(temp);
-                        }
-                    }
-                }
-                sr.Close();
-            }
-            return stars;
-        }
-        
-
-        public Star(): base() {
-            this.Type = "Звезда";
-            this.Name = "Звезда";
-        }
-        public Star(string name, string photo): base(name)
-        {
-            this.Type = "Звезда";
-            this.setPhoto(photo, true);
-        }
-        public Star(string name, long Age, DateTime DateOfDiscovery, Color starColor, string photo) : base(name, Age, DateOfDiscovery, starColor, photo)
-        {
-            this.Type = "Звезда";
-        }
     }
 }
