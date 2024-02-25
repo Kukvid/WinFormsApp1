@@ -1,46 +1,45 @@
-﻿using System.Numerics;
+﻿using System.Collections.Generic;
+using System.Numerics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Xml.Linq;
 
 namespace WinFormsLibrary
 {
-    public class StarSystem: SpaceObject
+    public class StarSystem: SpaceObject, ISpaceObject, IStarSystem, IReadWriteObjectsFromToFiles
     {
-        public List<Star> ChildrenStars = new List<Star>();
+        // Поля класса
+        // Конструкторы класса
+        public StarSystem() : base(){}
+        public StarSystem(string name) : base(name) { }
 
-        public string StructureInfo { get
-            {
-                return getStructureInfo();
-            } }
-
-        public string getStructureInfo()
+        public StarSystem(string name, long age, DateTime DateOfDiscovery, string photoPath, List<Moon> moons, List<Planet> planets,
+            List<Star> stars) : base(name, age, DateOfDiscovery, photoPath)
         {
-            string info_msg = "";
-
-            foreach (Star star in ChildrenStars)
-            {
-                if (star.Name == "Не указано")
-                {
-                    info_msg += "В данной звездной системе нет привязанных звезд\n";
-                    return info_msg;
-                }
-
-                info_msg += $"Звезда {star.Name}\n";
-
-                foreach (Planet planet in star.ChildrenPlanets)
-                {
-                    info_msg += $"--Планета {planet.Name}\n";
-
-                    foreach(Moon moon in planet.ChildrenMoons)
-                    {
-                        info_msg += $"----Луна {moon.Name}\n";
-                    }
-                }
-            }
-
-            return info_msg;
+            SpaceObjectColor = Color.White;
+            updateChildrenLists(moons, planets, stars);
+            LoggingInFileEventStarSystem?.Invoke($"{DateTime.Now} . Создан объект типа {ToString()} и именем {this.Name} со следующими данными:\n" +
+                $"Имя звездной системы: {name},\n" +
+                $"Возраст системы: {age} лет,\n" +
+                $"Дата открытия системы: {DateOfDiscovery}\n" +
+                $"Звезды в составе системы: {Join(",", ChildrenStars)};\n" +
+                $"Планеты в составе системы: {Join(",", ChildrenPlanets)};\n" +
+                $"Луны в составе системы: {Join(",", ChildrenMoons)}");
         }
-        private string Join(string separator, List<Star> objects)
+
+
+        // Свойства класса
+        // Списки для хранения звезд, планет и лун
+        public List<Star> ChildrenStars { get; set; } = new List<Star>();
+        public List<Planet> ChildrenPlanets { get; set; } = new List<Planet>();
+        public List<Moon> ChildrenMoons { get; set; } = new List<Moon>();
+
+
+        // Методы класса
+        
+        //Перегруженные методы для объединения имен объектов через разделитель
+        public string Join(string separator, List<Star> objects)
         {
             string result_string = objects[0].Name;
             for (int i = 1; i < objects.Count; i++)
@@ -49,45 +48,64 @@ namespace WinFormsLibrary
             }
             return result_string;
         }
+        public string Join(string separator, List<Planet> objects)
+        {
+            string result_string = objects[0].Name;
+            for (int i = 1; i < objects.Count; i++)
+            {
+                result_string += separator + objects[i].Name;
+            }
+            return result_string;
+        }
+        public string Join(string separator, List<Moon> objects)
+        {
+            string result_string = objects[0].Name;
+            for (int i = 1; i < objects.Count; i++)
+            {
+                result_string += separator + objects[i].Name;
+            }
+            return result_string;
+        }
+
+        // Приватный метод для формирования строки с данными о звездной системы
         private string getStarSystemText()
         {
-
-            string res_string = "Звездная система" + "!!!" + this.Name + "!!!" + this.Age.ToString() +
-                 "!!!" + this.Join(",", ChildrenStars) + "\n";
+            string res_string = this.ToString() + "!!!" + 
+                this.Name + "!!!" +
+                this.Age.ToString() + "!!!" +
+                this.DateOfDiscovery.ToString("dd.MM.yyyy hh:mm") + "!!!" +
+                this.SpaceObjectColor.ToString() + "!!!" + 
+                this.Photo + "!!!" +
+                this.Join(",", ChildrenMoons) + "!!!" + 
+                this.Join(",", ChildrenPlanets) + "!!!" + 
+                this.Join(",", ChildrenStars);
 
             return res_string;
         }
+        // Метод для получения информации о дочерних объектах(лунах, планетах, звездах)
         public string getChildrenInfo()
         {
-            string ChildrenAndParentInfo = "";
-            ChildrenAndParentInfo += $"Звезды, которой состоят в звездной системе: {this.Join(",", ChildrenStars)}\n";
-            return ChildrenAndParentInfo;
+            string ChildrenInfo = this.Name + "\n";
+            ChildrenInfo += $"Звезды, которые состоят в звездной системе: {this.Join(",", ChildrenStars)}\n";
+            ChildrenInfo += $"Планеты, которые состоят в звездной системе: {this.Join(",", ChildrenPlanets)}\n";
+            ChildrenInfo += $"Луны, которые состоят в звездной системе: {this.Join(",", ChildrenMoons)}\n";
+            return ChildrenInfo;
         }
-        public string getStringWithAdditionalInfo()
-        {   
+        // Переопределенный метод для получения строки с дополнительной информацией
+        // об объекте класса Звездная система
+        public override string getStringWithAdditionalInfo()
+        {
             string message = getChildrenInfo();
             return message;
         }
-        public override void writeToFile()
+        // Метод для записи данных в файл.
+        public void writeToFile()
         {
-
             StreamWriter streamWriter = new StreamWriter(SpaceObject.spaceObjectsPath, true);
             streamWriter.WriteLine(getStarSystemText());
             streamWriter.Close();
         }
-        public void LinkWithChildren(List<Star> stars)
-        {
-            foreach (Star star in stars)
-            {
-                for (int i = 0; i < ChildrenStars.Count; i++)
-                {
-                    if (star.Name == ChildrenStars[i].Name)
-                    {
-                        ChildrenStars[i] = star;
-                    }
-                }
-            }
-        }
+        // Метод для чтения данных из файла.
         static public List<StarSystem> readFromFile()
         {
             List<StarSystem> starSystems = new List<StarSystem>();
@@ -108,21 +126,23 @@ namespace WinFormsLibrary
                         {
                             StarSystem temp = new StarSystem();
                             temp.Name = system_line[1];
-                            temp.setAge(long.Parse(system_line[2]));
+                            temp.Age = long.Parse(system_line[2]);
                             temp.DateOfDiscovery = DateTime.ParseExact(system_line[3], "dd.MM.yyyy HH:mm", null);
                             temp.SpaceObjectColor = temp.ParseColor(system_line[4]);
                             temp.setPhoto(system_line[5], true);
-                            if (system_line.Length == 6)
+                            foreach (string moonName in system_line[6].Split(","))
                             {
-                                temp.ChildrenStars = new List<Star>() { new Star("Не указано") };
+                                temp.ChildrenMoons.Add(new Moon(moonName));
                             }
-                            else
+                            foreach (string planetName in system_line[7].Split(","))
                             {
-                                foreach (string PlanetName in system_line[6].Split(","))
-                                {
-                                    temp.ChildrenStars.Add(new Star(PlanetName));
-                                }
+                                temp.ChildrenPlanets.Add(new Planet(planetName));
                             }
+                            foreach (string starName in system_line[8].Split(","))
+                            {
+                                temp.ChildrenStars.Add(new Star(starName));
+                            }
+                            
                             starSystems.Add(temp);
                         }
                     }
@@ -131,73 +151,90 @@ namespace WinFormsLibrary
             }
             return starSystems;
         }
-
-        List<SpaceObject> SpaceObjects = new List<SpaceObject>();
-
-        List<List<SpaceObject>> SpaceObjectsNArray = new List<List<SpaceObject>>() { new List<SpaceObject>(), new List<SpaceObject>(), new List<SpaceObject>() };
-        public StarSystem(List<Star> stars, List<Planet> planets, List<Moon> moons)
+        // Метод для обновления списков дочерних объектов
+        public void updateChildrenLists(List<Moon> moons, List<Planet> planets, List<Star> stars)
         {
-            /*
-            Stars = stars;
-            Moons = moons;
-            Planets = planets;
-            */
-            //
-            //if (stars.Count == 0)
-            //{
-              //  ChildrenStars.Add(new Star("Не указано"));
-            //}
+            ChildrenMoons = new List<Moon>();
+            ChildrenPlanets = new List<Planet>();
+            ChildrenStars = new List<Star>();
+            if (moons.Count == 0)
+            {
+                ChildrenMoons.Add(new Moon("Не указано"));
+            }
+            if (planets.Count == 0)
+            {
+                ChildrenPlanets.Add(new Planet("Не указано"));
+            }
+            if (stars.Count == 0)
+            {
+                ChildrenStars.Add(new Star("Не указано"));
+            }
+
             foreach (Star star in stars)
             {
-                SpaceObjects.Add((SpaceObject)star);
                 ChildrenStars.Add(star);
-                SpaceObjectsNArray[0].Add(star);
+                star.ParentStarSystem = this;
             }
             foreach (Planet planet in planets)
             {
-                SpaceObjects.Add((SpaceObject)planet);
-                SpaceObjectsNArray[1].Add(planet);
+                ChildrenPlanets.Add(planet);
+                planet.ParentStarSystem = this;
             }
             foreach (Moon moon in moons)
             {
-                SpaceObjects.Add((SpaceObject)moon);
-                SpaceObjectsNArray[2].Add(moon);
+                ChildrenMoons.Add(moon);
+                moon.ParentStarSystem = this;
             }
+            LoggingInFileEventStarSystem?.Invoke($"{DateTime.Now}. К объекту типа {ToString()} и именем {this.Name} привязаны следующие космические объекты:\n" +
+               $"Звезды в составе системы: {Join(",", ChildrenStars)};\n" +
+               $"Планеты в составе системы: {Join(",", ChildrenPlanets)};\n" +
+               $"Луны в составе системы: {Join(",", ChildrenMoons)}");
         }
+        // Переопределенный метод для получения типа объекта
         public override string ToString()
         {
             return "Звездная система";
         }
-        public StarSystem()
+        // Метод для связывания объекта с его дочерними объектами
+        public void linkWithChildren(List<Moon> moons, List<Planet> planets, List<Star> stars)
         {
+            for (int i = 0; i < ChildrenStars.Count; i++)
+            {
+                foreach (Star star in stars)
+                {
+                    if (star.Name == ChildrenStars[i].Name)
+                    {
+                        ChildrenStars[i] = star;
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < ChildrenPlanets.Count; i++)
+            {
+                foreach (Planet planet in planets)
+                {
+                    if (planet.Name == ChildrenPlanets[i].Name)
+                    {
+                        ChildrenPlanets[i] = planet;
+                        break;
+                    }
+                }
+            }
+            for (int i = 0; i < ChildrenMoons.Count; i++)
+            {
+                foreach (Moon moon in moons)
+                {
+                    if (moon.Name == ChildrenMoons[i].Name)
+                    {
+                        ChildrenMoons[i] = moon;
+                        break;
+                    }
+                }
+            }
 
         }
-        public StarSystem(string name): base(name)
-        {
-        }
-        public StarSystem(string name, long age, DateTime DateOfDiscovery, Color color, string photoPath): base(name, age, color, DateOfDiscovery, photoPath)
-        {
-            ChildrenStars.Add(new Star("Не указано"));
-        }
 
-        
-        public SpaceObject this[int index]
-        {
-            get => SpaceObjects[index];
-            set => SpaceObjects[index] = value;
-
-        }
-        /*
-        public SpaceObject this[int objectTypeIndex, int objectIndex]
-        {
-            get => SpaceObjectsNArray[objectTypeIndex][objectIndex];
-            set => SpaceObjectsNArray[objectTypeIndex][objectIndex] = value;
-        }
-        public List<SpaceObject> this[int objectTypeIndex]
-        {
-            get => SpaceObjectsNArray[objectTypeIndex];
-            set => SpaceObjectsNArray[objectTypeIndex] = value;
-        }*/
-        
+        // Событие для логирования
+        public event LogHandler LoggingInFileEventStarSystem = writeLog;
     }
 }

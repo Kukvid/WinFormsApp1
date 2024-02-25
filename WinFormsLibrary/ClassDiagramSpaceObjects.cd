@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WinFormsLibrary.SpaceObject" Collapsed="true">
+    <Position X="8.75" Y="3.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAAACAIzIAAAQCiUAEAgAARAAAA0AACAAQCABAAAAAQ=</HashCode>
+      <FileName>SpaceObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="WinFormsLibrary.Moon">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <AssociationLine Name="ParentStarSystem" Type="WinFormsLibrary.StarSystem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.062" Y="4.5" />
+        <Point X="5.062" Y="4.125" />
+        <Point X="15.062" Y="4.125" />
+        <Point X="15.062" Y="4.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAAAQBAAAQAACEAEAAAAAAECAgAAAAAAAABAAAQAA=</HashCode>
+      <FileName>Moon.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ParentStarSystem" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.233" />
+  </Class>
+  <Class Name="WinFormsLibrary.Planet">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <AssociationLine Name="ParentStarSystem" Type="WinFormsLibrary.StarSystem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8.812" Y="4.5" />
+        <Point X="8.812" Y="4.125" />
+        <Point X="15.5" Y="4.125" />
+        <Point X="15.5" Y="4.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAgAAQABAAAEAAAEAABAAAAAECAgAAAAAAAABAAAQAA=</HashCode>
+      <FileName>Planet.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ParentStarSystem" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="WinFormsLibrary.Star">
+    <Position X="11.5" Y="4.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <AssociationLine Name="ParentStarSystem" Type="WinFormsLibrary.StarSystem" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.656" Y="4.5" />
+        <Point X="12.656" Y="4.125" />
+        <Point X="16.125" Y="4.125" />
+        <Point X="16.125" Y="4.5" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAABAAAEAAAEAAAAAAAAEAAgAAAAAAAABEAAQAA=</HashCode>
+      <FileName>Star.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="ParentStarSystem" />
+    </ShowAsAssociation>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="WinFormsLibrary.StarSystem">
+    <Position X="15" Y="4.5" Width="1.5" />
+    <AssociationLine Name="ChildrenStars" Type="WinFormsLibrary.Star" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.25" Y="7.915" />
+        <Point X="15.25" Y="8.828" />
+        <Point X="12.125" Y="8.828" />
+        <Point X="12.125" Y="7.53" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ChildrenPlanets" Type="WinFormsLibrary.Planet" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.75" Y="7.915" />
+        <Point X="15.75" Y="9.24" />
+        <Point X="15.583" Y="9.24" Type="JumpStart" />
+        <Point X="15.417" Y="9.24" Type="JumpEnd" />
+        <Point X="8.375" Y="9.24" />
+        <Point X="8.375" Y="8.175" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="ChildrenMoons" Type="WinFormsLibrary.Moon" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="15.5" Y="7.915" />
+        <Point X="15.5" Y="9.912" />
+        <Point X="4.562" Y="9.912" />
+        <Point X="4.562" Y="8.367" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAQgAAgUAAIABAAAAAAwAAIAAAAABAEAAAA=</HashCode>
+      <FileName>StarSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="ChildrenStars" />
+      <Property Name="ChildrenPlanets" />
+      <Property Name="ChildrenMoons" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Orientation="Left" Position="0.201" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
