@@ -3,7 +3,7 @@
 Луна!!!Луна67!!!1000000!!!20.09.2023 02:00!!!1!!!Color [Silver]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано
 Луна!!!Луна!!!1000000!!!20.09.2023 02:00!!!1!!!Color [Blue]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано
 Луна!!!Ио!!!1000000!!!08.01.1753 02:00!!!0,089319!!!Color [A=255, R=199, G=206, B=49]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Io.jpg!!!Аывыв
-Луна!!!Тестовый!!!3421412!!!20.09.2023 02:00!!!5!!!Color [A=255, R=0, G=0, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\cancel.png!!!Ntcn
+Луна!!!Тестовый луна!!!3421412!!!20.09.2023 02:00!!!5!!!Color [A=255, R=0, G=0, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\cancel.png!!!Не указано
 Планета!!!Земля!!!4500000000!!!05.04.2007 11:36!!!5,97!!!9,807!!!Color [A=255, R=0, G=0, B=160]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Earth.jpg!!!Солнечная
 Планета!!!Уран!!!9999999999!!!13.03.1781 04:09!!!86,81!!!8,87!!!Color [A=255, R=214, G=214, B=214]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Uranus.jpg!!!Солнечная
 Планета!!!Марс!!!4500000000!!!15.08.1870 10:38!!!0,0639!!!3,71!!!Color [A=255, R=238, G=122, B=60]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Mars.jpg!!!Солнечная
@@ -30,4 +30,4 @@
 Звездная система!!!Тестовая!!!312312!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано!!!Не указано!!!Не указано
 Звездная система!!!Аывыв!!!67!!!20.09.2023 02:00!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\default-star-system.jpg!!!Ио!!!Не указано!!!Альфа Центавра,Альдебаран
 Звездная система!!!Тестовый тест!!!213123!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано!!!Не указано!!!Не указано
-Звездная система!!!Ntcn!!!1!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Тестовый!!!Не указано!!!Не указано
+Звездная система!!!Ntcn!!!1!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано!!!Не указано!!!Не указано
