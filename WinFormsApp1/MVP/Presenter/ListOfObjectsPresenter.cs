@@ -91,7 +91,7 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
         public int getIndexOfItemInObjectsList(string objectName)
         {
             string selectedObjectName = objectName;
-            for (int i = 0; i <= model.objects.Count(); i++)
+            for (int i = 0; i <= model.objects.Count; i++)
             {
                 if (selectedObjectName == model.objects[i].NameWithType)
                 {
@@ -110,23 +110,25 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
             
             if (string.IsNullOrEmpty(textFromTextBoxSearch))
             {
-                foreach (SpaceObject obj in model.objects)
+                while (model.spaceObjectIterator.HasNext())
                 {
-                    view.addObjectToListBoxObjects(obj.NameWithType);
+                    view.addObjectToListBoxObjects(model.spaceObjectIterator.Next().NameWithType);
                     objectCount++;
-                }                
+                }
             }
             else
             {
-                foreach (SpaceObject obj in model.objects)
+                while (model.spaceObjectIterator.HasNext())
                 {
-                    if (obj.Name.ToLower().Contains(textFromTextBoxSearch.ToLower()))
+                    SpaceObject currentSpaceObject = model.spaceObjectIterator.Next();
+                    if (currentSpaceObject.Name.ToLower().Contains(textFromTextBoxSearch.ToLower()))
                     {
-                        view.addObjectToListBoxObjects(obj.NameWithType);
+                        view.addObjectToListBoxObjects(currentSpaceObject.NameWithType);
                         objectCount++;
                     }
                 }
             }
+            model.spaceObjectIterator.resetIndex();
             view.setLabelCount(objectCount.ToString());
         }
 
@@ -165,7 +167,7 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
         //Отсортировать список объектов согласно какому-то способу сортировки
         public void sortObjectsList(string mode, string searchText)
         {
-            model.sortObjectsList(mode);
+            model.objects.SortSpaceObjectsList(mode);
             updateListBox(searchText);
         }
 

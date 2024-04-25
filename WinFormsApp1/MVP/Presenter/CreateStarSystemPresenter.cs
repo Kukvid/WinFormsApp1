@@ -117,13 +117,14 @@ namespace WinFormsApp1.MVP.Presenter
             {
                 message_if_wrong += "\nИзмените название звездной системы;";
             }
-            foreach (SpaceObject spaceObject in model.objects)
+            while (model.spaceObjectIterator.HasNext())
             {
-                if (spaceObject.Name.ToLower() == view.getStarSystemName().ToLower())
+                if (model.spaceObjectIterator.Next().Name == view.getStarSystemName().ToLower())
                 {
                     message_if_wrong += "\nДанное имя уже находится в списке;";
                 }
             }
+            model.spaceObjectIterator.resetIndex();
             if (view.getNumericUpDownAge() == 0)
             {
                 message_if_wrong += "\nОбязательно выберите возраст звездной системы;";
@@ -193,7 +194,7 @@ namespace WinFormsApp1.MVP.Presenter
                 view.showMessageBox(String.Format(star_system_str, newObject.Name, newObject.Age, dateOfDiscovery, Utils.Join(",", newObject.ChildrenStars), Utils.Join(",", newObject.ChildrenPlanets), Utils.Join(",", newObject.ChildrenMoons)), "Звездная система успешно создана");
 
                 // Добавление новой звездной системы в списки и обновление отображаемого списка объектов
-                model.objects.Add(newObject);
+                model.objects.AddSpaceObject(newObject);
                 model.starSystems.Add(newObject);
                 view.Close();
             }

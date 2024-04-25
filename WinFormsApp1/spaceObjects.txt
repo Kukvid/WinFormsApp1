@@ -2,7 +2,7 @@
 Луна!!!Фобос(спутник Марса)!!!1000000!!!15.08.1870 10:38!!!1,072E-09!!!Color [A=255, R=175, G=154, B=154]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\fobos-sputnik-planety-mars.jpg!!!Солнечная
 Луна!!!Луна67!!!1000000!!!20.09.2023 02:00!!!1!!!Color [Silver]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано
 Луна!!!Луна!!!1000000!!!20.09.2023 02:00!!!1!!!Color [Blue]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано
-Луна!!!Ио!!!1000000!!!08.01.1753 02:00!!!0,089319!!!Color [A=255, R=199, G=206, B=49]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Io.jpg!!!Аывыв
+Луна!!!Ио!!!1000000!!!08.01.1753 02:00!!!0,089319!!!Color [A=255, R=199, G=206, B=49]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Io.jpg!!!Аывы
 Луна!!!Тестовый луна!!!3421412!!!20.09.2023 02:00!!!5!!!Color [A=255, R=0, G=0, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\cancel.png!!!Не указано
 Планета!!!Земля!!!4500000000!!!05.04.2007 11:36!!!5,97!!!9,807!!!Color [A=255, R=0, G=0, B=160]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Earth.jpg!!!Солнечная
 Планета!!!Уран!!!9999999999!!!13.03.1781 04:09!!!86,81!!!8,87!!!Color [A=255, R=214, G=214, B=214]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Uranus.jpg!!!Солнечная
@@ -14,13 +14,13 @@
 Планета!!!Сатурн!!!4503000000!!!20.09.1800 02:00!!!568,3!!!10,44!!!Color [A=255, R=210, G=202, B=174]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Saturn.jpg!!!Солнечная
 Планета!!!Планета!!!31212!!!20.09.2023 02:00!!!4!!!10!!!Color [A=255, R=0, G=64, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Earth.jpg!!!Не указано
 Звезда!!!Солнце!!!9999999988!!!10.08.1796 11:49!!!Color [A=255, R=243, G=174, B=31]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\sun.jpg!!!Солнечная
-Звезда!!!Альфа Центавра!!!6000000000!!!08.10.2023 12:07!!!Color [A=255, R=0, G=128, B=192]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Alfa-TSentavra-V.jpg!!!Аывыв
+Звезда!!!Альфа Центавра!!!6000000000!!!08.10.2023 12:07!!!Color [A=255, R=0, G=128, B=192]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Alfa-TSentavra-V.jpg!!!Аывы
 Звезда!!!Цефей!!!5000000000!!!08.10.2023 12:07!!!Color [A=255, R=128, G=0, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Cepheus.jpg!!!ТЕСТ
 Звезда!!!Лаланд 21185!!!5000000000!!!08.10.2023 12:07!!!Color [Red]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Laland 21185.jpg!!!Не указано
 Звезда!!!Ро змееносца!!!6000000000!!!08.10.2023 01:33!!!Color [Purple]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Rho Ophiuchi.png!!!Не указано
 Звезда!!!ВР-124!!!6000000000!!!08.10.2023 01:33!!!Color [A=255, R=157, G=96, B=151]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\DyingStar WR-124.png!!!Не указано
 Звезда!!!Сириус!!!6000000000!!!08.10.2023 01:36!!!Color [Aqua]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Sirius.jpg!!!Не указано
-Звезда!!!Альдебаран!!!6600000000!!!08.10.2023 01:42!!!Color [A=255, R=255, G=128, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Aldebaran.jpg!!!Аывыв
+Звезда!!!Альдебаран!!!6600000000!!!08.10.2023 01:42!!!Color [A=255, R=255, G=128, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Aldebaran.jpg!!!Аывы
 Звезда!!!Капелла!!!5600000000!!!09.10.2023 09:46!!!Color [Aqua]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Kapella_Star.jpg!!!Не указано
 Звезда!!!Альтаир!!!999999999!!!14.10.2023 11:59!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Altair.jpg!!!Не указано
 Звезда!!!Звезда!!!31212!!!20.09.2023 02:00!!!Color [A=255, R=0, G=64, B=64]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Earth.jpg!!!Не указано
@@ -28,6 +28,6 @@
 Звездная система!!!Солнечная!!!4571000000!!!20.09.1800 02:00!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\Солнечная система.jpg!!!Деймос(спутник Марса),Фобос(спутник Марса)!!!Земля,Уран,Марс,Венера,Нептун,Меркурий,Юпитер,Сатурн!!!Солнце
 Звездная система!!!ТЕСТ!!!312312132!!!20.09.2023 02:00!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\themeCats.jpg!!!Не указано!!!Не указано!!!Цефей
 Звездная система!!!Тестовая!!!312312!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано!!!Не указано!!!Не указано
-Звездная система!!!Аывыв!!!67!!!20.09.2023 02:00!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\default-star-system.jpg!!!Ио!!!Не указано!!!Альфа Центавра,Альдебаран
+Звездная система!!!Аывы!!!67!!!20.09.2023 02:00!!!Color [White]!!!C:\Users\Daniil\source\repos\WinFormsApp1\WinFormsApp1\media\default-star-system.jpg!!!Ио!!!Не указано!!!Альфа Центавра,Альдебаран
 Звездная система!!!Тестовый тест!!!213123!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано!!!Не указано!!!Не указано
 Звездная система!!!Ntcn!!!1!!!20.09.2023 02:00!!!Color [White]!!!C:\\Users\\Daniil\\source\\repos\\WinFormsApp1\\WinFormsApp1\\media\\default-star-system.jpg!!!Не указано!!!Не указано!!!Не указано

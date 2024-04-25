@@ -32,7 +32,8 @@ namespace WinFormsApp1.MVP.Presenter
         public int getIndexOfItemInObjectsList(string objectName)
         {
             string selectedObjectName = objectName;
-            for (int i = 0; i <= model.objects.Count(); i++)
+
+            for (int i = 0; i <= model.objects.Count; i++)
             {
                 if ( selectedObjectName == model.objects[i].NameWithType)
                 {
@@ -83,15 +84,16 @@ namespace WinFormsApp1.MVP.Presenter
         {
             string message_if_wrong = "";
 
-            // Проверка уникальности нового имени объекта
-            foreach (SpaceObject spaceObject in model.objects)
+            // Проверка уникальности имени объекта
+            while (model.spaceObjectIterator.HasNext())
             {
-                if (view.getSpaceObjectName() == spaceObject.Name 
-                    & spaceObjectToChange.Name != spaceObject.Name)
+                if (model.spaceObjectIterator.Next().Name == view.getSpaceObjectName().ToLower())
                 {
-                    message_if_wrong += "Объект с таким именем уже сущестувет, измените имя объекта;";
+                    message_if_wrong += "\nДанное имя уже находится в списке;";
                 }
+                
             }
+            model.spaceObjectIterator.resetIndex();
             // Проверка корректности введенных данных
             if (string.IsNullOrEmpty(view.getSpaceObjectName()) | view.getSpaceObjectName() == "Не указано"|
                 view.getSpaceObjectName().Contains("!"))

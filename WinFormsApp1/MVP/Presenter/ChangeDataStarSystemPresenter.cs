@@ -41,7 +41,7 @@ namespace WinFormsApp1.MVP.Presenter
         public int getIndexOfItemInObjectsList(string objectName)
         {
             string selectedObjectName = objectName;
-            for (int i = 0; i <= model.objects.Count(); i++)
+            for (int i = 0; i <= model.objects.Count; i++)
             {
                 if (selectedObjectName == model.objects[i].NameWithType)
                 {
@@ -208,16 +208,18 @@ namespace WinFormsApp1.MVP.Presenter
         {
             // Переменная для хранения сообщения об ошибке
             string message_if_wrong = "";
-
             // Проверка на уникальность имени объекта
-            foreach (SpaceObject spaceObject in model.objects)
+            while (model.spaceObjectIterator.HasNext())
             {
-                if (starSystemToChange.Name.ToLower() == spaceObject.Name
+                // Если у объекта меняется имя на то которое уже есть
+                if (starSystemToChange.Name.ToLower() == model.spaceObjectIterator.Next().Name
                     & starSystemToChange.Name.ToLower() != view.getStarSystemName())
                 {
                     message_if_wrong += "Объект с таким именем уже существует, измените имя объекта;";
                 }
+                
             }
+            model.spaceObjectIterator.resetIndex();
 
             // Проверка наличия названия звездной системы
             if (string.IsNullOrEmpty(view.getStarSystemName()) |
@@ -243,19 +245,6 @@ namespace WinFormsApp1.MVP.Presenter
             }
             else
             {
-                // Списки для хранения свободных и выбранных звезд, планет и лун
-
-                /*
-                string[] freeMoonsNames = getStringsArrayFromListBoxItems(view.getFreeMoonsFromListBoxMoons());
-                string[] freePlanetsNames = getStringsArrayFromListBoxItems(view.getFreePlanetsFromListBoxPlanets());
-                string[] freeStarsNames = getStringsArrayFromListBoxItems(view.getFreeStarsFromListBoxStars());
-
-                string[] occupiedMoonsNames = getStringsArrayFromListBoxItems(view.getOccupiedMoonsFromListBoxMoons());
-                string[] occupiedPlanetsNames = getStringsArrayFromListBoxItems(view.getOccupiedPlanetsFromListBoxPlanets());
-                string[] occupiedStarsNames = getStringsArrayFromListBoxItems(view.getOccupiedStarsFromListBoxStars());
-                */
-
-
                 // Списки звезд, планет и лун для новой звездной системы
                 List<Star> tempStars = new List<Star>();
                 List<Planet> tempPlanets = new List<Planet>();
@@ -346,14 +335,10 @@ namespace WinFormsApp1.MVP.Presenter
                         }
                     }
                 }
-                
-                
-                
-                
                 // Обновление данных о звездной системе
                 foreach (StarSystem starSystem in model.starSystems)
                 {
-                    if (starSystem.Name == view.getStarSystemName())
+                    if (starSystem.Name == starSystemToChange.Name)
                     {
                         starSystem.Name = view.getStarSystemName();
                         starSystem.Age = view.getNumericUpDownAge();

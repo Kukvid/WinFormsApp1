@@ -40,13 +40,14 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
                     message_if_wrong += "\nИзмените название космического объекта;";
                 }
                 // Проверка уникальности имени объекта
-                foreach (SpaceObject spaceObject in model.objects)
+                while (model.spaceObjectIterator.HasNext())
                 {
-                    if (spaceObject.Name.ToLower() == view.getSpaceObjectName().ToLower())
+                    if (model.spaceObjectIterator.Next().Name == view.getSpaceObjectName().ToLower())
                     {
                         message_if_wrong += "\nДанное имя уже находится в списке;";
-                    }
+                    }    
                 }
+                model.spaceObjectIterator.resetIndex();
                 // Проверка наличия выбранного возраста объекта
                 if (view.getNumericUpDownAge() == 0)
                 {
@@ -108,7 +109,7 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
 
                         view.showMessageBox(String.Format(star_str, newObject.Name, newObject.Age, dateOfDiscovery, newObject.SpaceObjectColor), "Космический объект успешно создан");
                         // Добавление объекта в списки
-                        model.objects.Add(newObject);
+                        model.objects.AddSpaceObject(newObject);
                         model.stars.Add(newObject);
                     }
                     else if (view.getComboBoxTypeText() == "Планета")
@@ -118,7 +119,7 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
 
                         view.showMessageBox(String.Format(planet_str, newObject.Name, newObject.Age, dateOfDiscovery, newObject.SpaceObjectColor, newObject.Weight, newObject.AccelerationOfFreeFall), "Космический объект успешно создан");
                         // Добавление объекта в списки
-                        model.objects.Add(newObject);
+                        model.objects.AddSpaceObject(newObject);
                         model.planets.Add(newObject);
                     }
                     else if (view.getComboBoxTypeText() == "Луна")
@@ -127,7 +128,7 @@ namespace WinFormsApp1.FormListOfObjects_MVP.Presenter
                         Moon newObject = new Moon(view.getSpaceObjectName(), view.getNumericUpDownAge(), view.getNumericUpDownWeight(), dateOfDiscovery, view.getObjectColor(), view.getImageTag());
                         view.showMessageBox(String.Format(moon_str, newObject.Name, newObject.Age, dateOfDiscovery, newObject.SpaceObjectColor, newObject.Weight), "Космический объект успешно создан");
                         // Добавление объекта в списки
-                        model.objects.Add(newObject);
+                        model.objects.AddSpaceObject(newObject);
                         model.moons.Add(newObject);
                     }
                     view.Close();

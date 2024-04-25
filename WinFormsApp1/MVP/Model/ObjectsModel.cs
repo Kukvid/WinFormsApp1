@@ -7,6 +7,7 @@ using WinFormsLibrary.classes;
 using WinFormsLibrary;
 using WinFormsApp1.FormListOfObjects_MVP.Presenter;
 using System.Reflection;
+using WinFormsApp1.MVP.Model.classes;
 
 namespace WinFormsApp1.FormListOfObjects.Model
 {
@@ -18,9 +19,13 @@ namespace WinFormsApp1.FormListOfObjects.Model
         public List<Star> stars = new List<Star>(StarDB.readFromFile()) { };
         public List<StarSystem> starSystems = new List<StarSystem>(StarSystemDB.readFromFile()) { };
 
-        // Список связанных объектов для отображения в списке формы
-        public List<SpaceObject> objects = new List<SpaceObject>(); // UpCasting
+        // Список объектов для отображения в списке формы и итератор
+        internal Objects objects = new Objects();
+        public ISpaceObjectIterator spaceObjectIterator;
+        
+        //public List<SpaceObject> objects = new List<SpaceObject>(); // UpCasting
 
+        /*
         // Словарь с числовыми значениями типов объектов для сортировки по типу
         Dictionary<string, int> costOfObjectsTypes = new Dictionary<string, int>
             {
@@ -28,41 +33,42 @@ namespace WinFormsApp1.FormListOfObjects.Model
                 {"Звезда" , 3},
                 {"Планета" , 2},
                 {"Луна" , 1},
-            };
+            };*/
 
         public ObjectsModel() {
+            spaceObjectIterator = objects.CreateIterator();
             // Обновление списков объектов
-            updateObjectsList(moons, planets, stars, starSystems, objects);
-            updateObjectsRelationships(moons, planets, stars, starSystems);
+            fillObjectsList();
+            updateObjectsRelationships();
         }
 
         // Метод обновления списков объектов
-        private void updateObjectsList(List<Moon> moons, List<Planet> planets, List<Star> stars, List<StarSystem> starSystems, List<SpaceObject> objects)
+        private void fillObjectsList()
         {
             // Добавление звездных систем в список объектов
             foreach (StarSystem starSystem in starSystems)
             {
-                objects.Add((SpaceObject)starSystem);
+                objects.AddSpaceObject((SpaceObject)starSystem);
             }
             // Добавление звезд в список объектов
             foreach (Star star in stars)
             {
-                objects.Add((SpaceObject)star);
+                objects.AddSpaceObject((SpaceObject)star);
             }
             // Добавление планет в список объектов
             foreach (Planet planet in planets)
             {
-                objects.Add((SpaceObject)planet);
+                objects.AddSpaceObject((SpaceObject)planet);
             }
             // Добавление лун в список объектов
             foreach (Moon moon in moons)
             {
-                objects.Add((SpaceObject)moon);
+                objects.AddSpaceObject((SpaceObject)moon);
             }
 
         }
 
-        private void updateObjectsRelationships(List<Moon> moons, List<Planet> planets, List<Star> stars, List<StarSystem> starSystems)
+        private void updateObjectsRelationships()
         {
             // Связывание лун с их родительскими звездными системами
             foreach (Moon moon in moons)
@@ -186,30 +192,11 @@ namespace WinFormsApp1.FormListOfObjects.Model
                 }
             }
             // Обновление отображаемого списка объектов
-            objects.RemoveAt(objectIndex);
+            objects.RemoveSpaceObject(objectIndex);
+
         }
 
-        public void sortObjectsList(string mode)
-        {
-            switch (mode)
-            {
-                case "Звездная система -> Луна":
-                    objects = objects.OrderByDescending(x => costOfObjectsTypes[x.ToString()])
-                        .ThenBy(x=> x.Name).ToList();
-                    break;
-                case "Луна -> Звездная система":
-                    objects = objects.OrderBy(x => costOfObjectsTypes[x.ToString()])
-                        .ThenBy(x => x.Name).ToList().ToList();
-                    break;
-                case "А -> Я":
-                    objects.Sort((x, y) => string.Compare(x.Name, y.Name));
-                    break;
-                case "Я -> А":
-                    objects.Sort((x, y) => string.Compare(x.Name, y.Name));
-                    objects.Reverse();
-                    break;
-            }
-        }
+        
     }
 
 } 
